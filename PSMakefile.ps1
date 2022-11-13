@@ -44,6 +44,8 @@ function Make() {
     move .\Sokoban.exe .\bin\debug
 
     Get-ChildItem .\bin\debug
+
+    Write-Output "You can run the project via .\bin\debug\Sokoban.exe or go to the executable path and type .\Sokoban.exe"
 }
 
 
