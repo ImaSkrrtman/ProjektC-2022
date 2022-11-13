@@ -3,8 +3,8 @@
 
 class Movement
 {
-public:
 private:
+public:
 };
 
 #endif /* _MOVEMENT_H */
