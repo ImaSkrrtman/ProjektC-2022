@@ -1,16 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define AUTOR "Filip Cybulski 188891"
-#include "../include/plansza.h"
 
 
+#define _AUTHOR "Filip Cybulski 188891"
 
 
-int main()
-
+int main(int argc, const char* argv[])
 {
-    Plansza P; 
-    penis i chuj
-    return 0;
+    fprintf(stdout, "%s\n", _AUTHOR);
+    fflush(stdout);
 
+    return 0;
 }
