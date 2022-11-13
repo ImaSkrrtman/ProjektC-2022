@@ -44,6 +44,12 @@ void Print(const char* format, ...)
 }
 
 
+void CleanWindow()
+{
+    Print("\x1B[2J\x1B[H");
+}
+
+
 // Dynamiczna allokacja pamieci
 void* Malloc(size_t size)
 {

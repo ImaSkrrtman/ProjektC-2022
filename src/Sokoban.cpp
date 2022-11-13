@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <signal.h>
 #ifndef _WRAPPERS_INCL
 #define _WRAPPERS_INCL
 #include "../include/Wrappers.h"
@@ -8,35 +9,53 @@
 #define _TYPES_INCL
 #include "../include/Types.h"
 #endif /* _TYPES_INCL */
+#include "../include/Menu.h"
 
 
-#define _AUTHOR "Filip Cybulski 188891"
+static volatile int abortSignal = 0;
+static void abortHandler(int __abortSignal)
+{
+    abortSignal = 1;
+}
+
+
+static inline void handleQuitSignals()
+{
+    signal(SIGINT, abortHandler);
+    signal(SIGTERM, abortHandler);
+}
 
 
 int main(int argc, const char* argv[])
 {
-    // Test czy wszystko dziala poprawnie
-    c_p_char message = "hi mom";
-    Print("%s\n", message);
-    PrintDebug("DEBUG: %s\n", message);
-    PrintStatus("STATUS: %s\n", message);
+    Menu menu;
+    
+    menu.printBanner();
+    menu.printMenu();
+    
+    u_short userOption;
 
-    int* x = (int*)Malloc(sizeof(int));
-    free(x);
+    do {
+        Print("Wybierz opcje: ");
+        handleQuitSignals();
+  
+        if (abortSignal == 1) {
+            CleanWindow();
+            Print("Opuszczanie...\n");
+            __EXIT_SUCCESS;
+        }
 
-    int y[32];
-    ZeroMemory(&y, sizeof(y));
+        fscanf_s(stdin, "%1d", &userOption);
 
-    int yArrayLength = 32;
+        if (userOption == 5) {
+            CleanWindow();            
 
-    for (auto i = 0; i < yArrayLength; i++) {
-        Print("%d -> 0x%04x\n", i, y[i]);
-    }
+            menu.printBanner();
+            menu.printMenu();
+        }
 
-    Print("%sGREEN%s\n", GREEN, RESET);
-    Print("%sRED%s\n", RED, RESET);
-    Print("%sYELLOW%s\n", YELLOW, RESET);
-    Print("%sBLUE%s\n", BLUE, RESET);
+        menu.getOption(userOption);
+    } while (userOption != 1);
 
     return 0;
 }

@@ -41,6 +41,7 @@ extern "C" {
 void PrintDebug(const char*, ...);
 void PrintStatus(const char*, ...);
 void Print(const char*, ...);
+void CleanWindow();
 
 void* Malloc(size_t);
 void ZeroMemory(void*, size_t);
