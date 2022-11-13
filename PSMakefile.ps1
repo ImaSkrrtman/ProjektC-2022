@@ -20,8 +20,10 @@ function Make() {
     # Wszystko w odpowiedniej kolejnosci
     $OBJFiles = ".\src\Board.o", ".\src\PlayerModel.o", ".\src\Sokoban.o", ".\src\Wrappers.o";
 
+    Write-Output "Checking if the old version exsists in the .\bin\debug path"
     IsBinFileInDebug;
 
+    Write-Output "Making the project"
     for ($i = 0; $i -lt $CFiles.Length; $i++) {
         $Command = "g++ -c " + $CFiles[$i] + " -o " + $OBJFiles[$i] + " -O3";
         Invoke-Expression $Command;
@@ -30,12 +32,18 @@ function Make() {
     $MakeBin = "g++ " + $OBJFiles + " -o " + "Sokoban" + " -O3";
     Invoke-Expression $MakeBin;
 
+    Write-Output "Cleaning"
     for ($i = 0; $i -lt $OBJFiles.Length; $i++) {
         $Command = "Remove-Item " + $OBJFiles[$i];
         Invoke-Expression $Command;
     }
 
+    Write-Output "Moving the new Sokoban.exe file to the .\bin\debug path"
+    Write-Output "Everything is done"
+
     move .\Sokoban.exe .\bin\debug
+
+    Get-ChildItem .\bin\debug
 }
 
 
