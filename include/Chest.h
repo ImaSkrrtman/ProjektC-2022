@@ -5,6 +5,8 @@ class Chest
 {
 private:
 public:
+    Chest(); // Konstruktor
+    ~Chest(); // Destruktor
 };
 
 #endif /* _CHEST_H */

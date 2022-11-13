@@ -5,6 +5,8 @@ class Input
 {
 private:
 public:
+    Input(); // Konstruktor
+    ~Input(); // Destruktor
 };
 
 #endif /* _INPUT_H */

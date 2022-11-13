@@ -5,6 +5,8 @@ class Board
 {
 private:
 public:
+    Board(); // Konstruktor
+    ~Board(); // Destruktor
 };
 
 #endif /* _BOARD_H */

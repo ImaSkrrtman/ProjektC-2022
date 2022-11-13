@@ -1,0 +1,8 @@
+Wyglad wszystkiego co bedzie w grze:
+
+Skrzynka:
+Plansza:
+Czlowiek:
+Kropka:
+Menu Startowe:
+Menu Koncowe:

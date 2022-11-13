@@ -31,6 +31,19 @@ void PrintStatus(const char* format, ...)
 }
 
 
+// To samo co PrintStatus() tyle ze chyba lepsze
+void Print(const char* format, ...)
+{
+    va_list arg;
+    va_start(arg, format);
+
+    vfprintf(stdout, format, arg);
+    fflush(stdout);
+
+    va_end(arg);  
+}
+
+
 // Dynamiczna allokacja pamieci
 void* Malloc(size_t size)
 {
