@@ -13,10 +13,10 @@ function IsBinFileInDebug() {
 
 # Tworzenie projektu
 function Make() {
-    # Dodawaj tutaj pliki *.cpp
+    # Dodawaj tutaj pliki *.cc
     $CFiles = ".\src\Board.cc", ".\src\PlayerModel.cc", ".\src\Sokoban.cc", ".\src\Wrappers.cc", ".\src\Menu.cc", ".\src\Movement.cc", ".\src\__Logs.cc";
     
-    # Dodawaj tutaj pliki cpp tyle ze rozszerzenie cpp zmien na .o
+    # Dodawaj tutaj pliki cpp tyle ze rozszerzenie cc zmien na .o
     # Wszystko w odpowiedniej kolejnosci
     $OBJFiles = ".\src\Board.o", ".\src\PlayerModel.o", ".\src\Sokoban.o", ".\src\Wrappers.o", ".\src\Menu.o", ".\src\Movement.o", ".\src\__Logs.o";
 

@@ -1,8 +1,11 @@
 CC=g++
 
-CPPFILES = .\src\Board.cpp .\src\PlayerModel.cpp .\src\Sokoban.cpp .\src\Wrappers.cpp .\src\Menu.cpp
+CPPFILES = .\src\Board.cc .\src\PlayerModel.cc .\src\Sokoban.cc .\src\Wrappers.cc .\src\Menu.cc .\src\Movement.cc \
+		   .\src\__Logs.cc
 
-OBJFILES = .\src\Board.o .\src\PlayerModel.o .\src\Sokoban.o .\src\Wrappers.o .\src\Menu.o
+
+OBJFILES = .\src\Board.o .\src\PlayerModel.o .\src\Sokoban.o .\src\Wrappers.o .\src\Menu.o .\src\Movement.o \
+			.\src\__Logs.o
 
 BINARY = Sokoban
 CC_FLAGS = -O3
@@ -12,7 +15,7 @@ all: $(BINARY)
 $(BINARY): $(OBJFILES)
 	$(CC) $^ -o $@ $(CC_FLAGS)
 
-$.o: %.cpp
+$.o: %.cc
 	$(CC) -c $^ -o $@ $(CC_FLAGS)
 
 clean:
