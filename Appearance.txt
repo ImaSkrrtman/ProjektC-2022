@@ -11,9 +11,9 @@ Plansza:
 
 Czlowiek:
     
-   __0__
-     U
-     M
+ 0
+|U|
+ M
 
 Kropka:
 

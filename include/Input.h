@@ -7,6 +7,8 @@ private:
 public:
     Input(); // Konstruktor
     ~Input(); // Destruktor
+
+    char readPlayersMove(char);
 };
 
 #endif /* _INPUT_H */

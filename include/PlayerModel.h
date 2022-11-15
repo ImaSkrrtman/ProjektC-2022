@@ -31,17 +31,28 @@
 #define LEVEL_MEDIUM_MOVES_COUNT 500
 #define LEVEL_HARD_MOVES_COUNT 150
 
-typedef struct
-{
-    u_int whereIsX;
-    u_int whereIsY;
-} PlayersPositionOnTheBoard;
-
 class PlayerModel
 {
 private:
+    typedef struct
+    {
+        u_int whereIsX;
+        u_int whereIsY;
+    } PlayersPositionOnTheBoard;
+
+    typedef struct
+    {
+        char head;
+        char rightHand;
+        char body;
+        char leftHand;
+        char legs;
+    } PlayerAppearance;
+
     u_short _movesLeft;
+
     PlayersPositionOnTheBoard _playersPosition;
+    PlayerAppearance _playerAppearance;
 
 public:
     PlayerModel(); // Konstruktor
@@ -50,6 +61,10 @@ public:
     PlayersPositionOnTheBoard whereIsPlayer();
 
     u_short getPlayersMoves();
+
+    void setPlayersAppearance(char='O', char='|', char='U', char='|', char='M');
+
+    PlayerAppearance getPlayersAppearance();
 };
 
 #endif /* _PLAYERMODEL_H */

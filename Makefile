@@ -1,11 +1,11 @@
 CC=g++
 
 CPPFILES = .\src\Board.cc .\src\PlayerModel.cc .\src\Sokoban.cc .\src\Wrappers.cc .\src\Menu.cc .\src\Movement.cc \
-		   .\src\__Logs.cc
+		   .\src\__Logs.cc .\src\Chest.cc .\src\PlayerModel.cc
 
 
 OBJFILES = .\src\Board.o .\src\PlayerModel.o .\src\Sokoban.o .\src\Wrappers.o .\src\Menu.o .\src\Movement.o \
-			.\src\__Logs.o
+			.\src\__Logs.o .\src\Chest.o .\src\PlayerModel.o
 
 BINARY = Sokoban
 CC_FLAGS = -O3

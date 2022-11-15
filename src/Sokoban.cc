@@ -113,12 +113,15 @@ int __cdecl main(int argc, const char* argv[])
     // system("timeout 2 > NULL");
     CleanWindow();
 
+    board.renderBoard();
 
     char userInput;
 
+    logging.writeLog("Wejscie do petli glownej");
+
     while (userInput != 'q') {
         menu.printInlineGameHelp();
-        board.renderBoard();
+        board.printBoard();
         handleQuitSignals();
         userInput = _getch();
         CleanWindow();

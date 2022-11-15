@@ -13,6 +13,7 @@
 Board::Board()
 {
     ZeroMemory(&this->_charBoard, sizeof(this->_charBoard));
+    ZeroMemory(&this->_board, sizeof(this->_board));
     this->_positionX = NULL;
     this->_positionY = NULL;
 }
@@ -22,6 +23,7 @@ Board::Board()
 Board::~Board()
 {
     ZeroMemory(&this->_charBoard, sizeof(this->_charBoard));
+    ZeroMemory(&this->_board, sizeof(this->_board));
     this->_positionX = NULL;
     this->_positionY = NULL;
 }
@@ -29,18 +31,13 @@ Board::~Board()
 
 void Board::renderBoard()
 {
+    srand(time(NULL));
+
     std::list<u_short> points;
     
     logging.writeLog("Rozpoczynanie tworzenia planszy");
 
-    std::cout << "\t\t\t[--][--][--][--][--][--][--][--][--][--][--][--][--][--][--][--][--][--]\n" << std::flush;
     for (auto row = 0; row < ROWS; row++) {
-        if (row < 10)
-            std::cout << "\t\t" << row << "  ";
-        else if (row >= 10)
-            std::cout << "\t\t" << row << " ";
-        
-        // Kolumny
         for (auto column = 0; column < COLUMNS; column++) {
             if (column == 79)
                 this->_charBoard[row][column] = '\n';
@@ -61,13 +58,15 @@ void Board::renderBoard()
                     this->_charBoard[row][column] = ' ';
                 }
             }
-
-            std::cout << this->_charBoard[row][column];
         }
     }
-    std::cout << "\t\t\t[--][--][--][--][--][--][--][--][--][--][--][--][--][--][--][--][--][--]\n\n" << std::flush;
     
     logging.writeLog("Plansza zostala stworzona");
+    logging.writeLog("Kopiowanie planszy");
+
+    memcpy(&this->_board, &this->_charBoard, sizeof(this->_board));
+
+    logging.writeLog("Plansza zostala skopiowana");
 
     int pointIndex = 0;
 
@@ -91,4 +90,21 @@ void Board::renderBoard()
     }
 
     std::clog << "\n\nWszystkie punkty = " << pointsCount/2 << '\n'; */
+}
+
+
+void Board::printBoard()
+{
+    std::cout << "\t\t       " << "[--][--][--][--][--][--][--][--][--][--][--][--][--][--][--][--][--][--]\n" << std::flush;
+    for (auto row = 0; row < ROWS; row++) {
+        if (row < 10)
+            std::cout << "\t\t" << row << "  ";
+        else if (row >= 10)
+            std::cout << "\t\t" << row << " ";
+        
+        for (auto column = 0; column < COLUMNS; column++) {
+            std::cout << this->_board[row][column];
+        }
+    }
+    std::cout << "\t\t       " << "[--][--][--][--][--][--][--][--][--][--][--][--][--][--][--][--][--][--]\n\n" << std::flush;
 }
