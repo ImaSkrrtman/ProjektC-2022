@@ -1,8 +1,20 @@
 Wyglad wszystkiego co bedzie w grze:
 
 Skrzynka:
+
+    [#]
+       
 Plansza:
+
+  [-][-][-][-][-][-][-][-][-][-][-][-][-][-][-][-][-][-][-][-][-][-][-][-][-][-]
+ 
+
 Czlowiek:
+    
+   __0__
+     U
+     M
+
 Kropka:
-Menu Startowe:
-Menu Koncowe:
+
+    o

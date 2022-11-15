@@ -27,19 +27,29 @@
 * Traktujemy plansze jako uklad wspolrzednych
 */
 
+#define LEVEL_EASY_MOVES_COUNT 1000
+#define LEVEL_MEDIUM_MOVES_COUNT 500
+#define LEVEL_HARD_MOVES_COUNT 150
+
 typedef struct
 {
     u_int whereIsX;
     u_int whereIsY;
-    u_short movesLeft;
 } PlayersPositionOnTheBoard;
 
 class PlayerModel
 {
 private:
+    u_short _movesLeft;
+    PlayersPositionOnTheBoard _playersPosition;
+
 public:
     PlayerModel(); // Konstruktor
     ~PlayerModel(); // Destruktor
+
+    PlayersPositionOnTheBoard whereIsPlayer();
+
+    u_short getPlayersMoves();
 };
 
 #endif /* _PLAYERMODEL_H */

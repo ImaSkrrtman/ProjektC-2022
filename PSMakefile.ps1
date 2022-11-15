@@ -14,11 +14,11 @@ function IsBinFileInDebug() {
 # Tworzenie projektu
 function Make() {
     # Dodawaj tutaj pliki *.cpp
-    $CFiles = ".\src\Board.cpp", ".\src\PlayerModel.cpp", ".\src\Sokoban.cpp", ".\src\Wrappers.cpp", ".\src\Menu.cpp";
+    $CFiles = ".\src\Board.cc", ".\src\PlayerModel.cc", ".\src\Sokoban.cc", ".\src\Wrappers.cc", ".\src\Menu.cc", ".\src\Movement.cc", ".\src\__Logs.cc";
     
     # Dodawaj tutaj pliki cpp tyle ze rozszerzenie cpp zmien na .o
     # Wszystko w odpowiedniej kolejnosci
-    $OBJFiles = ".\src\Board.o", ".\src\PlayerModel.o", ".\src\Sokoban.o", ".\src\Wrappers.o", ".\src\Menu.o";
+    $OBJFiles = ".\src\Board.o", ".\src\PlayerModel.o", ".\src\Sokoban.o", ".\src\Wrappers.o", ".\src\Menu.o", ".\src\Movement.o", ".\src\__Logs.o";
 
     Write-Output "Checking if the old version exsists in the .\bin\debug path"
     IsBinFileInDebug;

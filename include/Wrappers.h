@@ -38,9 +38,9 @@ extern "C" {
 * Zamiast std::cout, printf(...), fprintf(...),
 * uzywaj tych funkcji
 */
-void PrintDebug(const char*, ...);
-void PrintStatus(const char*, ...);
-void Print(const char*, ...);
+void PrintDebug(const char*, ...) __attribute__((deprecated));
+void PrintStatus(const char*, ...) __attribute__((deprecated));
+void Print(const char*, ...) __attribute__((deprecated));
 void CleanWindow();
 
 void* Malloc(size_t);
