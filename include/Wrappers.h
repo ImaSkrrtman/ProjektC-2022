@@ -1,16 +1,3 @@
-/*
-* Wrapper to funkcja ktora robi to samo
-* co inna funkcja tylko ma jakas dodatkowa
-* wlasnosc np. sprawdza czy zaalokowana
-* pamiec jest rowna NULL albo czy cos 
-* zwrocilo jeden
-*
-* Chyba ten plik bedzie includowany wszedzie
-*
-! Umieszczaj w nim funkcje, makra, zmienne globalne
-! ktore beda uzywane wiecej niz raz
-*/
-
 #ifndef _WRAPPERS_H
 #define _WRAPPERS_H
 #include <random>

@@ -11,22 +11,6 @@
 
 #define _AUTHOR "Filip Cybulski 188891"
 
-/*
-*
-*        #####                                            
-*       #     #  ####  #    #  ####  #####    ##   #    # 
-*       #       #    # #   #  #    # #    #  #  #  ##   # 
-*        #####  #    # ####   #    # #####  #    # # #  # 
-*             # #    # #  #   #    # #    # ###### #  # # 
-*       #     # #    # #   #  #    # #    # #    # #   ## 
-*        #####   ####  #    #  ####  #####  #    # #    # 
-*
-* 1. Zacznij Gre
-* 2. Wyswietl Pomoc
-* 3. Ustawienia
-* 4. Autor
-*/
-
 class Menu
 {
 private:
@@ -44,10 +28,12 @@ public:
     
     void printBanner();
     void printMenu();
+
+    //? Dodac mozliwosc zmiany wygladu skrzynek i avatara
     void printSettings(UserSettings*);
     void printHelp(UserSettings*);
     void printAuthor();
-    void printInlineGameHelp();
+    void printInlineGameHelp(u_int, u_int);
     
     u_short getOption(u_short, UserSettings);
 };

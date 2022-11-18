@@ -19,7 +19,7 @@ Menu::Menu()
 // Destruktor
 Menu::~Menu()
 {
-
+    logging.writeLog("Zniszczono klase Menu");
 }
 
 
@@ -48,7 +48,8 @@ void Menu::printMenu()
 
 void Menu::printSettings(UserSettings* userSettings)
 {
-    switch (userSettings->goUP) {
+    switch (userSettings->goUP) 
+    {
         case 'w':
             this->_goUP = "W - Idz w gore";
         break;
@@ -57,7 +58,8 @@ void Menu::printSettings(UserSettings* userSettings)
         break;
     }
 
-    switch (userSettings->goDOWN) {
+    switch (userSettings->goDOWN) 
+    {
         case 's':
             this->_goDOWN = "S - Idz w dol";
         break;
@@ -66,7 +68,8 @@ void Menu::printSettings(UserSettings* userSettings)
         break;
     }
 
-    switch (userSettings->goLEFT) {
+    switch (userSettings->goLEFT) 
+    {
         case 'a':
             this->_goLEFT = "A - Idz w lewo";
         break;
@@ -75,7 +78,8 @@ void Menu::printSettings(UserSettings* userSettings)
         break;
     }
 
-    switch (userSettings->goRIGHT) {
+    switch (userSettings->goRIGHT) 
+    {
         case 'd':
             this->_goRIGHT = "D - Idz w prawo";
         break;
@@ -97,9 +101,10 @@ void Menu::printSettings(UserSettings* userSettings)
 
 void Menu::printHelp(UserSettings* userSettings)
 {
-    std::cout << "\nPomoc:\n";
+    std::cout << "\nPomoc:";
 
-    switch (userSettings->goUP) {
+    switch (userSettings->goUP) 
+    {
         case 'w':
             this->_goUP = "W - Idz w gore";
         break;
@@ -108,7 +113,8 @@ void Menu::printHelp(UserSettings* userSettings)
         break;
     }
 
-    switch (userSettings->goDOWN) {
+    switch (userSettings->goDOWN) 
+    {
         case 's':
             this->_goDOWN = "S - Idz w dol";
         break;
@@ -117,7 +123,8 @@ void Menu::printHelp(UserSettings* userSettings)
         break;
     }
 
-    switch (userSettings->goLEFT) {
+    switch (userSettings->goLEFT) 
+    {
         case 'a':
             this->_goLEFT = "A - Idz w lewo";
         break;
@@ -126,7 +133,8 @@ void Menu::printHelp(UserSettings* userSettings)
         break;
     }
 
-    switch (userSettings->goRIGHT) {
+    switch (userSettings->goRIGHT) 
+    {
         case 'd':
             this->_goRIGHT = "D - Idz w prawo";
         break;
@@ -150,11 +158,13 @@ void Menu::printAuthor()
 }
 
 
-void Menu::printInlineGameHelp()
+void Menu::printInlineGameHelp(u_int movesLeft, u_int movesMade)
 {
-    std::cout << "\n\n\n\n" << this->_goUP << ", " << this->_goDOWN << ", " << std::endl 
+    std::cout << this->_goUP << ", " << this->_goDOWN << ", " << std::endl 
               << this->_goLEFT << ", " << this->_goRIGHT << ", " << std::endl 
-              << "u -> Cofnij (undo), r - Ponow ruch (redo), q - Wyjdz\n\n";
+              << "u -> Cofnij (undo), r - Ponow ruch (redo), q - Wyjdz" << std::endl << std::endl
+              << "Pozostalo: " << movesLeft << " ruchow" << std::endl
+              << "Wykonano: " << movesMade << " ruchow" << std::endl << std::endl;
 }
 
 
@@ -162,7 +172,8 @@ u_short Menu::getOption(u_short userOption, UserSettings userSettings)
 {
     this->_selectedOption = userOption;
 
-    switch (this->_selectedOption) {
+    switch (this->_selectedOption) 
+    {
         case 0:
         break;
         case 1:

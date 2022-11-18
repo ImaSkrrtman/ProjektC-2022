@@ -1,4 +1,5 @@
 #include "../include/Movement.h"
+#include "../include/__Logs.h"
 
 
 // Konstruktor
@@ -12,6 +13,8 @@ Movement::Movement()
 Movement::~Movement()
 {
     this->reset();
+
+    logging.writeLog("Zniszczono klase Movement");
 }
 
 

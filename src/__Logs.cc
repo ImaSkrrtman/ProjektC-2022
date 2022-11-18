@@ -13,10 +13,14 @@ __Logs::__Logs()
 
     this->_ofs.open(__LOG_FILENAME, std::ios::out | std::ios::trunc);
 
-    if (this->checkFile() == false) {
-        try {
+    if (this->checkFile() == false) 
+    {
+        try 
+        {
             this->_ofs.open(__LOG_FILENAME, std::ios::out | std::ios::trunc);
-        } catch (...) {
+        } 
+        catch (...) 
+        {
             throw "Unable to open the log file";
         }
     }
@@ -30,6 +34,8 @@ __Logs::~__Logs()
     this->_criticalErrors = 0;
 
     this->_ofs.close();
+
+    logging.writeLog("Zniszczono klase __Logs");
 }
 
 

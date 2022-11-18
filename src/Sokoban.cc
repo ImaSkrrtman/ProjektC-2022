@@ -34,7 +34,6 @@ static inline void handleQuitSignals()
     signal(SIGTERM, abortHandler);
 }
 
-
 int __cdecl main(int argc, const char* argv[])
 {
     Menu menu;
@@ -48,25 +47,29 @@ int __cdecl main(int argc, const char* argv[])
 
     logging.writeLog("Wejscie do petli wyboru opcji");
 
-    do {
+    do 
+    {
         std::cout << "Wybierz opcje: ";
         handleQuitSignals();
   
-        if (abortSignal == 1) {
+        if (abortSignal == 1) 
+        {
             CleanWindow();
             std::cout << "Opuszczanie...\n";
             __EXIT_SUCCESS;
         }
-
+        
         std::cin >> userOption;
 
-        if (userOption == 3) {
+        if (userOption == 3) 
+        {
             menu.printSettings(&movement.userSettings);
 
-            std::cout << "Personalisacje ustawien: ";
+            std::cout << "Personalisacja ustawien: ";
             std::cin >> settingsOption;
             
-            switch (settingsOption) {
+            switch (settingsOption) 
+            {
                 case 1:
                     movement.changeMovementToArrows();
                     settingsChanged = true;
@@ -90,7 +93,8 @@ int __cdecl main(int argc, const char* argv[])
             }
         }
 
-        if (userOption == 5) {
+        if (userOption == 5)
+        {
             CleanWindow();            
 
             menu.printBanner();
@@ -117,18 +121,51 @@ int __cdecl main(int argc, const char* argv[])
 
     char userInput;
 
+    static int movesMade = 0;
+    static int movesLeft = LEVEL_EASY_MOVES_COUNT;
+
     logging.writeLog("Wejscie do petli glownej");
 
-    while (userInput != 'q') {
-        menu.printInlineGameHelp();
+    while (userInput != 'q') 
+    {
+        menu.printInlineGameHelp(movesLeft, movesMade);
         board.printBoard();
         handleQuitSignals();
         userInput = _getch();
+
+        if (userInput == movement.userSettings.goDOWN || userInput == movement.userSettings.goUP
+            || userInput == movement.userSettings.goRIGHT || userInput == movement.userSettings.goLEFT)
+        {
+            movesLeft--;
+            movesMade++;
+        }
+        else if (userInput == movement.userSettings.undo)
+        {
+            if (movesMade != 0 && movesLeft != LEVEL_EASY_MOVES_COUNT)
+            {
+                movesLeft += movesMade;
+                movesMade = 0;
+            }
+        }
+        else if (userInput == movement.userSettings.redo)
+        {
+            if (movesMade != 0 && movesLeft != LEVEL_EASY_MOVES_COUNT) 
+            {
+                movesLeft += 1;
+                movesMade--;
+            }
+        }
+        else
+        {
+            // pass;
+        }
+
         CleanWindow();
     }
 
+    board.Clean();
+
     logging.writeLog("Wychodzenie z gry");
-    logging.writeSummary();
 
     return 0;
 }

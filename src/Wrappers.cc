@@ -6,7 +6,7 @@
 #include "../include/__Logs.h"
 
 
-// Uzywaj jej do wypisywania informacji do debugowania
+// Przestarzale
 void PrintDebug(const char* format, ...)
 {
     va_list arg;
@@ -19,7 +19,7 @@ void PrintDebug(const char* format, ...)
 }
 
 
-// Uzywaj jej do wypisywania informacji roznych, zamiast std::cout itd...
+// Przestarzale
 void PrintStatus(const char* format, ...)
 {
     va_list arg;
@@ -32,7 +32,7 @@ void PrintStatus(const char* format, ...)
 }
 
 
-// To samo co PrintStatus() tyle ze chyba lepsze
+// Przestarzale
 void Print(const char* format, ...)
 {
     va_list arg;
@@ -48,7 +48,8 @@ void Print(const char* format, ...)
 void CleanWindow()
 {
     // Ekwiwalent do system("cls");
-    logging.writeLog("Czyszczenie okna konsoli");
+    // std::cout << "\x1B[2J\x1B[H";
+
     system("cls");
 }
 
@@ -58,12 +59,15 @@ void* Malloc(size_t size)
 {
     void* ptr;
 
-    if ((ptr = malloc(size)) == NULL) {
+    if ((ptr = malloc(size)) == NULL) 
+    {
         fprintf(stderr, "Nie zaalokowano pamieci w %s -> %d [ \x1B[31mBLAD\x1B[0m ]\n", __FILE__, __LINE__);
         logging.writeError("Malloc() -> blad podczas allokacji pamieci", true);
         fflush(stderr);
         __EXIT_FAILURE;
     }
+
+    logging.writeLog("Pamiec zostala zaalokowana");
 
     return ptr;
 }
@@ -74,10 +78,13 @@ void ZeroMemory(void *src, size_t size)
 {
     void* ptr;
 
-    if ((ptr = memset(src, 0, size)) == NULL) {
+    if ((ptr = memset(src, 0, size)) == NULL) 
+    {
         fprintf(stderr, "Nie mozna wyczyscic zadanego obszaru pamieci %s -> %d [ \x1B[31mBLAD\x1B[0m ]\n", __FILE__, __LINE__);
         logging.writeError("ZeroMemory() -> blad podczas wypelniania bloku pamieci zerami 0x00", true);
         fflush(stderr);
         __EXIT_FAILURE;
     }
+
+    logging.writeLog("Blok pamieci zostal wypelniony zerami");
 }

@@ -5,64 +5,29 @@
 #include "Types.h"
 #endif /* _TYPES_INCL */
 
-/*
-*               | y
-*               |
-*               |
-*               |     * <--- gracz
-*               |
-*--------------------------------> x
-*               |
-*               |
-*               |
-*               |
-*
-*
-* Zalozmy ze gracz ma wspolrzedne (5, 4) to wtedy odpowiednio
-* bedzie trzeba zmieniac polozenie w strukture whereIsX = 5, whereIsY = 4
-* np.
-* Do struktury chcemy miec pelen dostep a nie kopie to chyba
-* uzyjemy wskaznika do niej
-*
-* Traktujemy plansze jako uklad wspolrzednych
-*/
-
 #define LEVEL_EASY_MOVES_COUNT 1000
 #define LEVEL_MEDIUM_MOVES_COUNT 500
 #define LEVEL_HARD_MOVES_COUNT 150
 
+typedef struct
+{
+    char head;
+    char rightArm;
+    char body;
+    char leftArm;
+    char legs;
+} PlayerAppearance;
+
 class PlayerModel
 {
 private:
-    typedef struct
-    {
-        u_int whereIsX;
-        u_int whereIsY;
-    } PlayersPositionOnTheBoard;
-
-    typedef struct
-    {
-        char head;
-        char rightHand;
-        char body;
-        char leftHand;
-        char legs;
-    } PlayerAppearance;
-
-    u_short _movesLeft;
-
-    PlayersPositionOnTheBoard _playersPosition;
     PlayerAppearance _playerAppearance;
 
 public:
     PlayerModel(); // Konstruktor
     ~PlayerModel(); // Destruktor
 
-    PlayersPositionOnTheBoard whereIsPlayer();
-
-    u_short getPlayersMoves();
-
-    void setPlayersAppearance(char='O', char='|', char='U', char='|', char='M');
+    void setPlayersAppearance(char, char, char, char, char);
 
     PlayerAppearance getPlayersAppearance();
 };

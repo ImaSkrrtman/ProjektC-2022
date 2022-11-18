@@ -1,28 +1,6 @@
 #ifndef _MOVEMENT_H
 #define _MOVEMENT_H
 
-/*
-* w -> gora
-* s -> dol
-* a -> lewo
-* d -> prawo
-*
-* Dodalbym mozliwosc zmiany wasd na strzalki
-? klasa Settings czy cos
-*
-? void Movement::moveUp();
-? void Movement::moveDown();
-? void Movement::moveLeft();
-? void Movement::moveRight();
-? void Movement::checkUserInput(char);
-*
-* co myslisz o takich funkcjach?
-*
-* Jeszcze bedzie trzeba zrobic funkcje
-* do czytania struktury i zmieniania polozenia
-* gracza
-*/
-
 #define UP_ARROW 72 // 0x48
 #define DOWN_ARROW 80 // 0x50
 #define LEFT_ARROW 75 // 0x4b
@@ -36,8 +14,8 @@ typedef struct
     char goDOWN;
     char goLEFT;
     char goRIGHT;
-    char undo;
-    char redo;
+    char undo; // stale
+    char redo; // stale
 } UserSettings;
 
 class Movement
@@ -49,8 +27,8 @@ private:
         char down; // s albo 80
         char left; // a albo 75
         char right; // d albo 77
-        char redo;
-        char undo;
+        char redo; // r
+        char undo; // u
     } MovementKeys;
 
     MovementKeys _movementKeys;

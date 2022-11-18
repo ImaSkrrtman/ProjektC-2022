@@ -8,7 +8,7 @@ public:
     Input(); // Konstruktor
     ~Input(); // Destruktor
 
-    char readPlayersMove(char);
+    char readPlayersMove(); 
 };
 
 #endif /* _INPUT_H */
