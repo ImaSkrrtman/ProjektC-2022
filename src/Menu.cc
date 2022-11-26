@@ -38,11 +38,11 @@ void Menu::printBanner()
 void Menu::printMenu()
 {
     std::cout << "[  " << GREEN << "CTRL+C" << RESET << " Aby wyjsc  ]\n";
-    std::cout << GREEN << "1." << RESET << " " << YELLOW << "Zacznij Gre\n" << RESET;
-    std::cout << GREEN << "2." << RESET << " " << YELLOW << "Wyswietl Pomoc\n" << RESET;
-    std::cout << GREEN << "3." << RESET << " " << YELLOW << "Ustawienia\n" << RESET;
-    std::cout << GREEN << "4." << RESET << " " << YELLOW << "Autor\n" << RESET;
-    std::cout << GREEN << "5." << RESET << " " << YELLOW << "Wyczysc okno\n" << RESET;
+    std::cout << GREEN << "1."  << RESET    << " "   << YELLOW << "Zacznij Gre\n"    << RESET;
+    std::cout << GREEN << "2."  << RESET    << " "   << YELLOW << "Wyswietl Pomoc\n" << RESET;
+    std::cout << GREEN << "3."  << RESET    << " "   << YELLOW << "Ustawienia\n"     << RESET;
+    std::cout << GREEN << "4."  << RESET    << " "   << YELLOW << "Autor\n"          << RESET;
+    std::cout << GREEN << "5."  << RESET    << " "   << YELLOW << "Wyczysc okno\n"   << RESET;
 }
 
 
@@ -158,13 +158,14 @@ void Menu::printAuthor()
 }
 
 
-void Menu::printInlineGameHelp(u_int movesLeft, u_int movesMade)
+void Menu::printInlineGameHelp(u_int movesLeft, u_int movesMade, u_int points)
 {
     std::cout << this->_goUP << ", " << this->_goDOWN << ", " << std::endl 
               << this->_goLEFT << ", " << this->_goRIGHT << ", " << std::endl 
               << "u -> Cofnij (undo), r - Ponow ruch (redo), q - Wyjdz" << std::endl << std::endl
               << "Pozostalo: " << movesLeft << " ruchow" << std::endl
-              << "Wykonano: " << movesMade << " ruchow" << std::endl << std::endl;
+              << "Wykonano: " << movesMade << " ruchow" << std::endl
+              << "Zdobyto: " << points << " punkt(ow)" << std::flush << std::endl << std::endl;
 }
 
 

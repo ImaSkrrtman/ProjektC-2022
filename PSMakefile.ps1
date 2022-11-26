@@ -16,13 +16,13 @@ function Make() {
     # Dodawaj tutaj pliki *.cc
     $CFiles = ".\src\Board.cc", ".\src\PlayerModel.cc", ".\src\Sokoban.cc", 
         ".\src\Wrappers.cc", ".\src\Menu.cc", ".\src\Movement.cc", 
-        ".\src\__Logs.cc", ".\src\Chest.cc";
+        ".\src\__Logs.cc", ".\src\Chest.cc", ".\src\Main.cc";
     
     # Dodawaj tutaj pliki cpp tyle ze rozszerzenie cc zmien na .o
     # Wszystko w odpowiedniej kolejnosci
     $OBJFiles =  ".\src\Board.o", ".\src\PlayerModel.o", ".\src\Sokoban.o", 
         ".\src\Wrappers.o", ".\src\Menu.o", ".\src\Movement.o", 
-        ".\src\__Logs.o", ".\src\Chest.o";
+        ".\src\__Logs.o", ".\src\Chest.o", ".\src\Main.o";
 
     Write-Output "Checking if the old version exsists in the .\bin\debug path"
     IsBinFileInDebug;
@@ -43,7 +43,7 @@ function Make() {
     }
 
     Write-Output "Moving the new Sokoban.exe file to the .\bin\debug path"
-    Write-Output "Everything is done"
+    Write-Output "Almost done"
 
     move .\Sokoban.exe .\bin\debug
 

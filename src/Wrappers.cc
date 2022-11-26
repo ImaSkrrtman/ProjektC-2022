@@ -54,7 +54,6 @@ void CleanWindow()
 }
 
 
-// Dynamiczna allokacja pamieci
 void* Malloc(size_t size)
 {
     void* ptr;
@@ -73,7 +72,6 @@ void* Malloc(size_t size)
 }
 
 
-// Wypelnianie bloku pamieci zerami np. int x[32] -> w pamieci = 0x1234 po uzyciu ZeroMemory(&x, sizeof(x)) -> 0x00000 w pamieci
 void ZeroMemory(void *src, size_t size)
 {
     void* ptr;

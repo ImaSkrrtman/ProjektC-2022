@@ -33,7 +33,7 @@ public:
     void printSettings(UserSettings*);
     void printHelp(UserSettings*);
     void printAuthor();
-    void printInlineGameHelp(u_int, u_int);
+    void printInlineGameHelp(u_int, u_int, u_int);
     
     u_short getOption(u_short, UserSettings);
 };

@@ -70,17 +70,20 @@ class Board
 private:
     char _charBoard[ROWS][COLUMNS];
     char _board[ROWS][COLUMNS];
-    u_short* _pointsX;
-    u_short* _pointsY;
     u_int _totalPoints;
 
     std::list<u_short> _points;
+    std::list<u_short> _pointsX;
+    std::list<u_short> _pointsY;
 
     Chest _chest;
     PlayerModel _playerModel;
+    PlayerAppearance _playerAppearance;
     ChestAppearance _chestAppearance;
 
-    DefaultPlayersPositionOnTheBoard _defaulltPlayersPositionOnTheBoard;
+    DefaultPlayersPositionOnTheBoard _defaultPlayersPositionOnTheBoard;
+    CurrentPlayersPositionOnTheBoard _currentPlayersPositionOnTheBoard;
+    PreviousPlayersPositionOnTheBoard _previousPlayersPositionOnTheBoard;
 
 public:
     Board(); // Konstruktor
@@ -89,6 +92,7 @@ public:
     void renderBoard();
     void putAplayerOnTheBoard(char (*)[ROWS][COLUMNS], u_int, u_int, u_int, u_int, u_int, u_int, u_int, u_int, u_int, u_int);
     void printBoard();
+    void changePlayersPosition(char, bool);
     void Clean();
 
     u_int getTotalPoints();

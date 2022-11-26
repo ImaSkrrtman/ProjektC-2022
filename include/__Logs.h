@@ -22,6 +22,7 @@ public:
     ~__Logs(); // Destruktor
 
     void writeLog(c_p_char);
+    void writeMovementLog(c_p_char, char);
     void writeError(c_p_char, bool);
     void writeSummary();
 

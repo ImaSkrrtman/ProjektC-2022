@@ -57,6 +57,13 @@ void __Logs::writeLog(c_p_char logMessage)
 }
 
 
+void __Logs::writeMovementLog(c_p_char logMessage, char c)
+{
+    this->_ofs << "LOG: " << logMessage << " " << c << std::endl;
+    this->_totalLogs++;
+}
+
+
 void __Logs::writeSummary()
 {
     this->_ofs << std::endl 
