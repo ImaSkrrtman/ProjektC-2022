@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../include/Board.h"
+#include "../include/board.h"
 #include "../include/Wrappers.h"
 #include "../include/Types.h"
 #include "../include/__Logs.h"

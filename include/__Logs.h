@@ -6,7 +6,11 @@
 #include "Types.h"
 #endif /* _TYPES_INCL */
 
-#define __LOG_FILENAME ".\\logs\\LatestLogs.log"
+#ifdef _WIN32
+#define __LOG_FILENAME "..\\logs\\LatestLogs.log"
+#else
+#define __LOG_FILENAME "../logs/LatestLogs.log"
+#endif
 
 class __Logs
 {

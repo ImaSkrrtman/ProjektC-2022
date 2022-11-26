@@ -3,6 +3,8 @@
 #include <string.h> // memset()
 #ifdef _WIN32
 #include <cstdarg>
+#else
+#include <stdarg.h>
 #endif
 #include "../include/Wrappers.h"
 #include "../include/__Logs.h"
@@ -52,7 +54,11 @@ void CleanWindow()
     // Ekwiwalent do system("cls");
     // std::cout << "\x1B[2J\x1B[H";
 
+#ifdef _WIN32
     system("cls");
+#else
+    system("clear");
+#endif
 }
 
 

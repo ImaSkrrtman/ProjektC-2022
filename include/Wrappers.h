@@ -2,7 +2,10 @@
 #define _WRAPPERS_H
 #ifdef _WIN32
 #include <random>
+#else
+typedef unsigned long size_t;
 #endif
+
 
 #define __EXIT_FAILURE exit(EXIT_FAILURE)
 #define __EXIT_SUCCESS exit(EXIT_SUCCESS)

@@ -10,14 +10,36 @@
 #define _TYPES_INCL
 #include "../include/Types.h"
 #endif /* _TYPES_INCL */
-#include "../include/Menu.h"
-#include "../include/Board.h"
+#include "../include/menu.h"
+#include "../include/board.h"
 #include "../include/Movement.h"
 #include "../include/__Logs.h"
 #ifdef _WIN32
 #include <conio.h> // To nie jest standardowa biblioteka ale jest tam zejebista funkcja ktora przyjmuje znak i nie czeka na enter _getch() <- to ona
 #else
-#include <curses.h>
+#include <termios.h>
+
+static char getch()
+{
+    char buf = 0;
+    struct termios old = {0};
+    fflush(stdout);
+    if(tcgetattr(0, &old) < 0)
+        perror("tcsetattr()");
+    old.c_lflag &= ~ICANON;
+    old.c_lflag &= ~ECHO;
+    old.c_cc[VMIN] = 1;
+    old.c_cc[VTIME] = 0;
+    if(tcsetattr(0, TCSANOW, &old) < 0)
+        perror("tcsetattr ICANON");
+    if(read(0, &buf, 1) < 0)
+        perror("read()");
+    old.c_lflag |= ICANON;
+    old.c_lflag |= ECHO;
+    if(tcsetattr(0, TCSADRAIN, &old) < 0)
+        perror("tcsetattr ~ICANON");
+    return buf;
+}
 #endif
 
 
