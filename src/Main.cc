@@ -39,7 +39,11 @@ inline static void handleQuitSignals()
 }
 
 
+#ifdef _WIN32
 int __cdecl main(int argc, const char* argv[])
+#else
+int main(int argc, const char* argv[])
+#endif
 {
     Menu menu;
     Movement movement;

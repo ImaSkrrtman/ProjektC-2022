@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h> // memset()
+#ifdef _WIN32
 #include <cstdarg>
+#endif
 #include "../include/Wrappers.h"
 #include "../include/__Logs.h"
 

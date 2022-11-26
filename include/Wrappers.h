@@ -1,6 +1,8 @@
 #ifndef _WRAPPERS_H
 #define _WRAPPERS_H
+#ifdef _WIN32
 #include <random>
+#endif
 
 #define __EXIT_FAILURE exit(EXIT_FAILURE)
 #define __EXIT_SUCCESS exit(EXIT_SUCCESS)
