@@ -137,7 +137,11 @@ int __cdecl main(int argc, const char* argv[])
         menu.printInlineGameHelp(movesLeft, movesMade, 0);
         board.printBoard();
         handleQuitSignals();
+#ifdef _WIN32
         userInput = _getch();
+#else
+        userInput = getch();
+#endif
         board.changePlayersPosition(userInput, settingsChanged);
 
         if (userInput == movement.userSettings.goDOWN || userInput == movement.userSettings.goUP
