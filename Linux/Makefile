@@ -19,7 +19,7 @@ $.o: %.cc
 	$(CC) -c $^ -o $@ $(CC_FLAGS)
 
 clean:
-	rm $(OBJFILES)
+	rm  -rf $(OBJFILES)
 
 debug:
 	make && make clean

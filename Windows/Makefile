@@ -23,8 +23,8 @@ clean:
 
 debug:
 	make && make clean
-	-move ..\Sokoban.exe ..\bin\debug
+	-move .\Sokoban.exe ..\bin\debug
 
 release:
 	make && make clean
-	-move ..\Sokoban.exe ..\bin\release
+	-move .\Sokoban.exe ..\bin\release
