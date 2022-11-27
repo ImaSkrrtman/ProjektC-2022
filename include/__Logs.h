@@ -7,9 +7,9 @@
 #endif /* _TYPES_INCL */
 
 #ifdef _WIN32
-#define __LOG_FILENAME "..\\logs\\LatestLogs.log"
+#define __LOG_FILENAME "..\\logs\\WinLatestLogs.log"
 #else
-#define __LOG_FILENAME "../logs/LatestLogs.log"
+#define __LOG_FILENAME "../logs/LinuxLatestLogs.log"
 #endif
 
 class __Logs

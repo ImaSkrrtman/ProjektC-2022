@@ -19,7 +19,7 @@
 #else
 #include <termios.h>
 
-
+#ifdef __linux__
 static char getch()
 {
     char buf = 0;
@@ -49,6 +49,7 @@ static char getch()
     
     return buf;
 }
+#endif
 #endif
 
 
@@ -83,7 +84,7 @@ logging.writeLog("OS: Windows x64");
 logging.writeLog("OS: Windows x32")
 #endif
 #elif defined(__linux__)
-loggind.writeLog("OS: Linux")
+logging.writeLog("OS: Linux");
 #else
 #error "Unsupported Operating System"
 #endif
