@@ -6,9 +6,9 @@
 #include "Types.h"
 #endif /* _TYPES_INCL */
 
-#ifdef _WIN32
+#if defined(_WIN32)
 #define __LOG_FILENAME "..\\logs\\WinLatestLogs.log"
-#else
+#elif defined(__linux__)
 #define __LOG_FILENAME "../logs/LinuxLatestLogs.log"
 #endif
 

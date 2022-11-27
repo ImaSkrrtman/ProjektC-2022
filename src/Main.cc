@@ -14,12 +14,12 @@
 #include "../include/board.h"
 #include "../include/Movement.h"
 #include "../include/__Logs.h"
-#ifdef _WIN32
+#if defined(_WIN32)
 #include <conio.h> // To nie jest standardowa biblioteka ale jest tam zejebista funkcja ktora przyjmuje znak i nie czeka na enter _getch() <- to ona
-#else
+#elif defined(__linux__)
 #include <termios.h>
 
-#ifdef __linux__
+#if defined(__linux__)
 static char getch()
 {
     char buf = 0;
@@ -50,6 +50,8 @@ static char getch()
     return buf;
 }
 #endif
+#else
+#error "Nieobslugiwany system operacyjny"
 #endif
 
 
@@ -71,14 +73,14 @@ inline static void handleQuitSignals()
 }
 
 
-#ifdef _WIN32
+#if defined(_WIN32)
 int __cdecl main(int argc, const char* argv[])
 #else
 int main(int argc, const char* argv[])
 #endif
 {
-#ifdef _WIN32
-#ifdef _WIN64
+#if defined(_WIN32)
+#if defined(_WIN64)
 logging.writeLog("OS: Windows x64");
 #else
 logging.writeLog("OS: Windows x32")
@@ -86,7 +88,7 @@ logging.writeLog("OS: Windows x32")
 #elif defined(__linux__)
 logging.writeLog("OS: Linux");
 #else
-#error "Unsupported Operating System"
+#error "Nieobslugiwany system operacyjny"
 #endif
 
     Menu menu;
@@ -185,7 +187,7 @@ logging.writeLog("OS: Linux");
         menu.printInlineGameHelp(movesLeft, movesMade, 0);
         board.printBoard();
         handleQuitSignals();
-#ifdef _WIN32
+#if defined(_WIN32)
         userInput = _getch();
 #else
         userInput = getch();
@@ -217,7 +219,7 @@ logging.writeLog("OS: Linux");
         }
         else
         {
-            // pass;
+            ;
         }
 
         CleanWindow();

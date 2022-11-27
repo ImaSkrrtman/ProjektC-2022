@@ -11,6 +11,7 @@ public:
     void menuEntryPoint();
 
     void startGame();
+    void mainLoop();
 
     void settingsEntryPoint();
     void appearanceSettings();

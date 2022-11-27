@@ -3,7 +3,7 @@
 
 # Sprawdzenie czy plik binarny jest w sciezce jak tak to usuwamy go i robimy nowy
 function IsBinFileInDebug() {
-    $BinPath = ".\bin\debug\Sokoban.exe";
+    $BinPath = "..\bin\debug\Sokoban.exe";
     $CheckPath = Test-Path -Path $BinPath -PathType Leaf;
     if ($CheckPath -eq $True) {
         Remove-Item $BinPath;
@@ -14,17 +14,17 @@ function IsBinFileInDebug() {
 # Tworzenie projektu
 function Make() {
     # Dodawaj tutaj pliki *.cc
-    $CFiles = ".\src\Board.cc", ".\src\PlayerModel.cc", ".\src\Sokoban.cc", 
-        ".\src\Wrappers.cc", ".\src\Menu.cc", ".\src\Movement.cc", 
-        ".\src\__Logs.cc", ".\src\Chest.cc", ".\src\Main.cc";
+    $CFiles = "..\src\Board.cc", "..\src\PlayerModel.cc", "..\src\Sokoban.cc", 
+        "..\src\Wrappers.cc", "..\src\Menu.cc", "..\src\Movement.cc", 
+        "..\src\__Logs.cc", "..\src\Chest.cc", "..\src\Main.cc";
     
     # Dodawaj tutaj pliki cpp tyle ze rozszerzenie cc zmien na .o
     # Wszystko w odpowiedniej kolejnosci
-    $OBJFiles =  ".\src\Board.o", ".\src\PlayerModel.o", ".\src\Sokoban.o", 
-        ".\src\Wrappers.o", ".\src\Menu.o", ".\src\Movement.o", 
-        ".\src\__Logs.o", ".\src\Chest.o", ".\src\Main.o";
+    $OBJFiles =  "..\src\Board.o", "..\src\PlayerModel.o", "..\src\Sokoban.o", 
+        "..\src\Wrappers.o", "..\src\Menu.o", "..\src\Movement.o", 
+        "..\src\__Logs.o", "..\src\Chest.o", "..\src\Main.o";
 
-    Write-Output "Checking if the old version exsists in the .\bin\debug path"
+    Write-Output "Checking if the old version exsists in the ..\bin\debug path"
     IsBinFileInDebug;
 
     Write-Output "Making the project"
@@ -44,14 +44,14 @@ function Make() {
         Invoke-Expression $Command;
     }
 
-    Write-Output "Moving the new Sokoban.exe file to the .\bin\debug path"
+    Write-Output "Moving the new Sokoban.exe file to the ..\bin\debug path"
     Write-Output "Almost done"
 
-    Move-Item .\Sokoban.exe .\bin\debug
+    Move-Item .\Sokoban.exe ..\bin\debug
 
-    Get-ChildItem .\bin\debug
+    Get-ChildItem ..\bin\debug
 
-    Write-Output "You can run the project via .\bin\debug\Sokoban.exe or go to the executable path and type .\Sokoban.exe"
+    Write-Output "You can run the project via ..\bin\debug\Sokoban.exe or go to the executable path and type .\Sokoban.exe"
 }
 
 

@@ -43,3 +43,9 @@ void Sokoban::startGame()
 {
 
 }
+
+
+void Sokoban::mainLoop()
+{
+
+}

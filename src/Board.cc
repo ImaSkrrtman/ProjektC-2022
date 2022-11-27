@@ -40,7 +40,6 @@ Board::Board()
 
     this->_chest.setDefaultChestAppearance();
     this->_chestAppearance = this->_chest.getChestAppearance();
-    this->_totalPoints = 0;
 }
 
 
@@ -71,6 +70,27 @@ void Board::putAplayerOnTheBoard(char (*board)[ROWS][COLUMNS], u_int headX, u_in
 }
 
 
+void Board::putChestsOnTheBoard(char (*board)[ROWS][COLUMNS])
+{
+    this->_chest.setChestAppearance('[', '#', ']');
+    this->_chestAppearance = this->_chest.getChestAppearance();
+
+    int x;
+    int y;
+
+    for (auto i = 0; i < 8; i++)
+    {
+        x = (rand()%(21-7+1)+7);
+        y = (rand()%(69-10+1)+10);
+
+        (*board)[x][y++] = this->_chestAppearance.middle;
+
+        this->_chestX[i] = x;
+        this->_chestY[i] = y;
+    }
+}
+
+
 void Board::renderBoard()
 {
     srand(time(NULL));
@@ -91,47 +111,35 @@ void Board::renderBoard()
                 this->_charBoard[row][column] = '-';
             else 
             {
-                if (((rand()%80)-45) == column) 
-                {
-                    logging.writeLog("Tworzenie punktu na planszy");
-
-                    this->_charBoard[row][column] = 'o';
-                    this->_points.push_back(row);
-                    this->_points.push_back(column);
-
-                    this->_totalPoints++;
-                } 
-                else 
-                    this->_charBoard[row][column] = ' ';
+                this->_charBoard[row][column] = ' ';
             }
         }
     }
 
-    // Pobranie indexow X i Y miejsc gdzie sa punkty
-    int pointIndex = 0;
+    int x;
+    int y;
 
-    for (auto pt : this->_points) 
-    {
-        if (pointIndex % 2 == 0)
-            this->_pointsX.push_back(pt); 
-        else
-            this->_pointsY.push_back(pt);
+    for (auto i = 0; i < 8; i++)
+    {   
+        x = (rand()%(21-7+1))+7;
+        y = (rand()%(69-10+1))+10;
 
-        pointIndex++;
+        this->_charBoard[x][y] = 'o';
+
+        this->_pointsX[i] = x;
+        this->_pointsY[i] = y;
     }
 
     logging.writeLog("Plansza zostala stworzona");
+
+    logging.writeLog("Tworzenie skrzynek");
+    this->putChestsOnTheBoard(&this->_charBoard);
+
     logging.writeLog("Kopiowanie planszy");
 
     memcpy(&this->_board, &this->_charBoard, sizeof(this->_board));
 
     logging.writeLog("Plansza zostala skopiowana");
-}
-
-
-u_int Board::getTotalPoints()
-{
-    return this->_totalPoints;
 }
 
 
@@ -143,7 +151,7 @@ void Board::printBoard()
         this->_currentPlayersPositionOnTheBoard.bodyY, this->_currentPlayersPositionOnTheBoard.rightArmX, 
         this->_currentPlayersPositionOnTheBoard.rightArmY, this->_currentPlayersPositionOnTheBoard.legsX, 
         this->_currentPlayersPositionOnTheBoard.legsY);
-    
+
     std::cout << "\t\t       " << "[--][--][--][--][--][--][--][--][--][--][--][--][--][--][--][--][--][--]\n" << std::flush;
     for (auto row = 0; row < ROWS; row++) 
     {
@@ -223,7 +231,7 @@ void Board::changePlayersPosition(char userInput, bool settingsChanged)
                 else
                 {
                     memcpy(&this->_previousPlayersPositionOnTheBoard, &this->_currentPlayersPositionOnTheBoard, sizeof(this->_previousPlayersPositionOnTheBoard));
-
+                    
                     (*boardPtr)[this->_currentPlayersPositionOnTheBoard.headX][this->_currentPlayersPositionOnTheBoard.headY] = ' ';
                     (*boardPtr)[this->_currentPlayersPositionOnTheBoard.bodyX][this->_currentPlayersPositionOnTheBoard.bodyY] = ' ';
                     (*boardPtr)[this->_currentPlayersPositionOnTheBoard.leftArmX][this->_currentPlayersPositionOnTheBoard.leftArmY] = ' ';
@@ -417,7 +425,5 @@ void Board::Clean()
     ZeroMemory(&this->_playerAppearance, sizeof(this->_playerAppearance));
     ZeroMemory(&this->_currentPlayersPositionOnTheBoard, sizeof(this->_currentPlayersPositionOnTheBoard));
     
-    this->_totalPoints = 0;
-
     logging.writeLog("Wyczyszczono plansze");
 }

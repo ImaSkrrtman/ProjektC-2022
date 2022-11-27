@@ -70,11 +70,11 @@ class Board
 private:
     char _charBoard[ROWS][COLUMNS];
     char _board[ROWS][COLUMNS];
-    u_int _totalPoints;
 
-    std::list<u_short> _points;
-    std::list<u_short> _pointsX;
-    std::list<u_short> _pointsY;
+    u_int _pointsX[8];
+    u_int _pointsY[8];
+    u_int _chestX[8];
+    u_int _chestY[8];
 
     Chest _chest;
     PlayerModel _playerModel;
@@ -91,11 +91,10 @@ public:
 
     void renderBoard();
     void putAplayerOnTheBoard(char (*)[ROWS][COLUMNS], u_int, u_int, u_int, u_int, u_int, u_int, u_int, u_int, u_int, u_int);
+    void putChestsOnTheBoard(char (*)[ROWS][COLUMNS]);
     void printBoard();
     void changePlayersPosition(char, bool);
     void Clean();
-
-    u_int getTotalPoints();
 };
 
 #endif /* _BOARD_H */

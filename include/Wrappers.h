@@ -1,8 +1,8 @@
 #ifndef _WRAPPERS_H
 #define _WRAPPERS_H
-#ifdef _WIN32
+#if defined(_WIN32)
 #include <random>
-#else
+#elif defined(__linux__)
 typedef unsigned long size_t;
 #endif
 
