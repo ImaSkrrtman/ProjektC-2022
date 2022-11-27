@@ -76,6 +76,18 @@ int __cdecl main(int argc, const char* argv[])
 int main(int argc, const char* argv[])
 #endif
 {
+#ifdef _WIN32
+#ifdef _WIN64
+logging.writeLog("OS: Windows x64");
+#else
+logging.writeLog("OS: Windows x32")
+#endif
+#elif defined(__linux__)
+loggind.writeLog("OS: Linux")
+#else
+#error "Unsupported Operating System"
+#endif
+
     Menu menu;
     Movement movement;
 

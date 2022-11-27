@@ -28,6 +28,7 @@ function Make() {
     IsBinFileInDebug;
 
     Write-Output "Making the project"
+
     for ($i = 0; $i -lt $CFiles.Length; $i++) {
         $Command = "g++ -c " + $CFiles[$i] + " -o " + $OBJFiles[$i] + " -O3";
         Invoke-Expression $Command;
@@ -37,6 +38,7 @@ function Make() {
     Invoke-Expression $MakeBin;
 
     Write-Output "Cleaning"
+
     for ($i = 0; $i -lt $OBJFiles.Length; $i++) {
         $Command = "Remove-Item " + $OBJFiles[$i];
         Invoke-Expression $Command;
@@ -45,7 +47,7 @@ function Make() {
     Write-Output "Moving the new Sokoban.exe file to the .\bin\debug path"
     Write-Output "Almost done"
 
-    move .\Sokoban.exe .\bin\debug
+    Move-Item .\Sokoban.exe .\bin\debug
 
     Get-ChildItem .\bin\debug
 

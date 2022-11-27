@@ -51,11 +51,12 @@ void Print(const char* format, ...)
 
 void CleanWindow()
 {
-    // Ekwiwalent do system("cls");
-    // std::cout << "\x1B[2J\x1B[H";
 
 #ifdef _WIN32
     system("cls");
+
+    // Ekwiwalent do system("cls");
+    // std::cout << "\x1B[2J\x1B[H";
 #else
     system("clear");
 #endif
