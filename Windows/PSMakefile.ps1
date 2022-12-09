@@ -24,10 +24,10 @@ function Make() {
         "..\src\Wrappers.o", "..\src\Menu.o", "..\src\Movement.o", 
         "..\src\__Logs.o", "..\src\Chest.o", "..\src\Main.o";
 
-    Write-Output "Checking if the old version exsists in the ..\bin\debug path"
+    Write-Output "Checking if the old version exsists in the ..\bin\debug path";
     IsBinFileInDebug;
 
-    Write-Output "Making the project"
+    Write-Output "Making the project";
 
     for ($i = 0; $i -lt $CFiles.Length; $i++) {
         $Command = "g++ -c " + $CFiles[$i] + " -o " + $OBJFiles[$i] + " -O3";
@@ -37,21 +37,21 @@ function Make() {
     $MakeBin = "g++ " + $OBJFiles + " -o " + "Sokoban" + " -O3";
     Invoke-Expression $MakeBin;
 
-    Write-Output "Cleaning"
+    Write-Output "Cleaning";
 
     for ($i = 0; $i -lt $OBJFiles.Length; $i++) {
         $Command = "Remove-Item " + $OBJFiles[$i];
         Invoke-Expression $Command;
     }
 
-    Write-Output "Moving the new Sokoban.exe file to the ..\bin\debug path"
-    Write-Output "Almost done"
+    Write-Output "Moving the new Sokoban.exe file to the ..\bin\debug path";
+    Write-Output "Almost done";
 
-    Move-Item .\Sokoban.exe ..\bin\debug
+    Move-Item .\Sokoban.exe ..\bin\debug;
 
-    Get-ChildItem ..\bin\debug
+    Get-ChildItem ..\bin\debug;
 
-    Write-Output "You can run the project via ..\bin\debug\Sokoban.exe or go to the executable path and type .\Sokoban.exe"
+    Write-Output "You can run the project via ..\bin\debug\Sokoban.exe or go to the executable path and type .\Sokoban.exe";
 }
 
 
