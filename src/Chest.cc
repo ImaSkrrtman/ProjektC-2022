@@ -15,7 +15,7 @@ Chest::~Chest()
 {
     ZeroMemory(&this->_chestAppearance, sizeof(this->_chestAppearance));
 
-    logging.writeLog("Zniszczono klase Chest"); 
+    logging->writeLog("Zniszczono klase Chest");
 }
 
 

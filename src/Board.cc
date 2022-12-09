@@ -1,9 +1,8 @@
 #include <iostream>
-#include <iterator>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../include/board.h"
+#include "../include/Board.h"
 #include "../include/Wrappers.h"
 #include "../include/Types.h"
 #include "../include/__Logs.h"
@@ -48,7 +47,7 @@ Board::~Board()
 {
     this->Clean();
 
-    logging.writeLog("Zniszczono klase Board");
+    logging->writeLog("Zniszczono klase Board");
 }
 
 
@@ -93,12 +92,11 @@ void Board::putChestsOnTheBoard(char (*board)[ROWS][COLUMNS])
 
 void Board::renderBoard()
 {
-    srand(time(NULL));
+    srand(time(nullptr));
 
-    logging.writeLog("Rozpoczynanie tworzenia planszy");
+    logging->writeLog("Rozpoczynanie tworzenia planszy");
 
-    for (auto row = 0; row < ROWS; row++) 
-    {
+    for (auto row = 0; row < ROWS; row++)  
         for (auto column = 0; column < COLUMNS; column++) 
         {
             if (column == 79)
@@ -110,11 +108,8 @@ void Board::renderBoard()
             else if (column == 1 || column == 2 || column == 76 || column == 77)
                 this->_charBoard[row][column] = '-';
             else 
-            {
                 this->_charBoard[row][column] = ' ';
-            }
         }
-    }
 
     int x;
     int y;
@@ -130,16 +125,16 @@ void Board::renderBoard()
         this->_pointsY[i] = y;
     }
 
-    logging.writeLog("Plansza zostala stworzona");
+    logging->writeLog("Plansza zostala stworzona");
 
-    logging.writeLog("Tworzenie skrzynek");
+    logging->writeLog("Tworzenie skrzynek");
     this->putChestsOnTheBoard(&this->_charBoard);
 
-    logging.writeLog("Kopiowanie planszy");
+    logging->writeLog("Kopiowanie planszy");
 
     memcpy(&this->_board, &this->_charBoard, sizeof(this->_board));
 
-    logging.writeLog("Plansza zostala skopiowana");
+    logging->writeLog("Plansza zostala skopiowana");
 }
 
 
@@ -167,7 +162,7 @@ void Board::printBoard()
 }
 
 
-void Board::changePlayersPosition(char userInput, bool settingsChanged)
+int Board::changePlayersPosition(char userInput, bool settingsChanged)
 {
     char (*boardPtr)[ROWS][COLUMNS] = &this->_board;
 
@@ -177,9 +172,7 @@ void Board::changePlayersPosition(char userInput, bool settingsChanged)
         {
             case 'w':
                 if (this->_currentPlayersPositionOnTheBoard.headX == 0)
-                {
-                    PASS
-                }
+                    return 1;
                 else 
                 {
                     memcpy(&this->_previousPlayersPositionOnTheBoard, &this->_currentPlayersPositionOnTheBoard, sizeof(this->_previousPlayersPositionOnTheBoard));
@@ -196,14 +189,12 @@ void Board::changePlayersPosition(char userInput, bool settingsChanged)
                     this->_currentPlayersPositionOnTheBoard.rightArmX--;
                     this->_currentPlayersPositionOnTheBoard.legsX--;
 
-                    logging.writeMovementLog("Uzytkownik nacisnal klawisz:", 'w');
+                    logging->writeMovementLog("Uzytkownik nacisnal klawisz:", 'w');
                 }
             break;
             case 's':
                 if (this->_currentPlayersPositionOnTheBoard.legsX == 24)
-                {
-                    PASS
-                }
+                    return 1;
                 else
                 {
                     memcpy(&this->_previousPlayersPositionOnTheBoard, &this->_currentPlayersPositionOnTheBoard, sizeof(this->_previousPlayersPositionOnTheBoard));
@@ -220,14 +211,12 @@ void Board::changePlayersPosition(char userInput, bool settingsChanged)
                     this->_currentPlayersPositionOnTheBoard.rightArmX++;
                     this->_currentPlayersPositionOnTheBoard.legsX++;
 
-                    logging.writeMovementLog("Uzytkownik nacisnal klawisz:", 's');
+                    logging->writeMovementLog("Uzytkownik nacisnal klawisz:", 's');
                 }
             break;
             case 'a':
                 if (this->_currentPlayersPositionOnTheBoard.leftArmY == 4)
-                {
-                    PASS
-                }
+                    return 1;
                 else
                 {
                     memcpy(&this->_previousPlayersPositionOnTheBoard, &this->_currentPlayersPositionOnTheBoard, sizeof(this->_previousPlayersPositionOnTheBoard));
@@ -244,14 +233,12 @@ void Board::changePlayersPosition(char userInput, bool settingsChanged)
                     this->_currentPlayersPositionOnTheBoard.rightArmY--;
                     this->_currentPlayersPositionOnTheBoard.legsY--;
 
-                    logging.writeMovementLog("Uzytkownik nacisnal klawisz:", 'a');
+                    logging->writeMovementLog("Uzytkownik nacisnal klawisz:", 'a');
                 }
             break;
             case 'd':
                 if (this->_currentPlayersPositionOnTheBoard.rightArmY == 74)
-                {
-                    PASS
-                }
+                    return 1;
                 else
                 {
                     memcpy(&this->_previousPlayersPositionOnTheBoard, &this->_currentPlayersPositionOnTheBoard, sizeof(this->_previousPlayersPositionOnTheBoard));
@@ -268,18 +255,16 @@ void Board::changePlayersPosition(char userInput, bool settingsChanged)
                     this->_currentPlayersPositionOnTheBoard.rightArmY++;
                     this->_currentPlayersPositionOnTheBoard.legsY++;
 
-                    logging.writeMovementLog("Uzytkownik nacisnal klawisz:", 'd');
+                    logging->writeMovementLog("Uzytkownik nacisnal klawisz:", 'd');
                 }
             break;
             case 'u':
                 //? goBackToTheBeginning()
-                    logging.writeMovementLog("Uzytkownik nacisnal klawisz:", 'u');
+                    logging->writeMovementLog("Uzytkownik nacisnal klawisz:", 'u');
             break;
             case 'r':
                 if (memcmp(&this->_currentPlayersPositionOnTheBoard, &this->_defaultPlayersPositionOnTheBoard, sizeof(this->_currentPlayersPositionOnTheBoard)) == 0)
-                {
-                    PASS
-                }
+                    return 1;
                 else
                 {
                     (*boardPtr)[this->_previousPlayersPositionOnTheBoard.headX][this->_previousPlayersPositionOnTheBoard.headY] = '0';
@@ -295,7 +280,7 @@ void Board::changePlayersPosition(char userInput, bool settingsChanged)
                     (*boardPtr)[this->_currentPlayersPositionOnTheBoard.legsX][this->_currentPlayersPositionOnTheBoard.legsY] = ' ';
                 }
 
-                    logging.writeMovementLog("Uzytkownik nacisnal klawisz:", 'r');
+                    logging->writeMovementLog("Uzytkownik nacisnal klawisz:", 'r');
             break;
         }
     }
@@ -305,9 +290,7 @@ void Board::changePlayersPosition(char userInput, bool settingsChanged)
         {
             case UP_ARROW:
                 if (this->_currentPlayersPositionOnTheBoard.headX == 0)
-                {
-                    PASS
-                }
+                    return 1;
                 else 
                 {
                     memcpy(&this->_previousPlayersPositionOnTheBoard, &this->_currentPlayersPositionOnTheBoard, sizeof(this->_previousPlayersPositionOnTheBoard));
@@ -325,13 +308,11 @@ void Board::changePlayersPosition(char userInput, bool settingsChanged)
                     this->_currentPlayersPositionOnTheBoard.legsX--;
                 }
 
-                logging.writeLog("Uzytkownik nacisnal: strzalka w gore");
+                logging->writeLog("Uzytkownik nacisnal: strzalka w gore");
             break;
             case DOWN_ARROW:
                 if (this->_currentPlayersPositionOnTheBoard.legsX == 24)
-                {
-                    PASS
-                }
+                    return 1;
                 else
                 {
                     memcpy(&this->_previousPlayersPositionOnTheBoard, &this->_currentPlayersPositionOnTheBoard, sizeof(this->_previousPlayersPositionOnTheBoard));
@@ -349,13 +330,11 @@ void Board::changePlayersPosition(char userInput, bool settingsChanged)
                     this->_currentPlayersPositionOnTheBoard.legsX++;
                 }
 
-                logging.writeLog("Uzytkownik nacisnal: strzalka w dol");
+                logging->writeLog("Uzytkownik nacisnal: strzalka w dol");
             break;
             case LEFT_ARROW:
                 if (this->_currentPlayersPositionOnTheBoard.leftArmY == 4)
-                {
-                    PASS
-                }
+                    return 1;
                 else
                 {
                     memcpy(&this->_previousPlayersPositionOnTheBoard, &this->_currentPlayersPositionOnTheBoard, sizeof(this->_previousPlayersPositionOnTheBoard));
@@ -373,13 +352,11 @@ void Board::changePlayersPosition(char userInput, bool settingsChanged)
                     this->_currentPlayersPositionOnTheBoard.legsY--;
                 }
 
-                logging.writeLog("Uzytkownik nacisnal: strzalka w lewo");
+                logging->writeLog("Uzytkownik nacisnal: strzalka w lewo");
             break;
             case RIGHT_ARROW:
                 if (this->_currentPlayersPositionOnTheBoard.rightArmY == 74)
-                {
-                    PASS
-                }
+                    return 1;
                 else
                 {
                     memcpy(&this->_previousPlayersPositionOnTheBoard, &this->_currentPlayersPositionOnTheBoard, sizeof(this->_previousPlayersPositionOnTheBoard));
@@ -397,23 +374,23 @@ void Board::changePlayersPosition(char userInput, bool settingsChanged)
                     this->_currentPlayersPositionOnTheBoard.legsY++;
                 }
 
-                logging.writeLog("Uzytkownik nacisnal: strzalka w prawo");
+                logging->writeLog("Uzytkownik nacisnal: strzalka w prawo");
             break;
             case 'u':
                 //? goBackToTheBeginning()
 
-                logging.writeMovementLog("Uzytkownik nacisnal klawisz:", 'u');
+                logging->writeMovementLog("Uzytkownik nacisnal klawisz:", 'u');
             break;
             case 'r':
                 if (memcmp(&this->_currentPlayersPositionOnTheBoard, &this->_defaultPlayersPositionOnTheBoard, sizeof(this->_currentPlayersPositionOnTheBoard)) == 0)
-                {
                     PASS
-                }
 
-                logging.writeMovementLog("Uzytkownik nacisnal klawisz:", 'u');
+                logging->writeMovementLog("Uzytkownik nacisnal klawisz:", 'u');
             break;
         }
     }
+
+    return 0;
 }
 
 
@@ -425,5 +402,5 @@ void Board::Clean()
     ZeroMemory(&this->_playerAppearance, sizeof(this->_playerAppearance));
     ZeroMemory(&this->_currentPlayersPositionOnTheBoard, sizeof(this->_currentPlayersPositionOnTheBoard));
     
-    logging.writeLog("Wyczyszczono plansze");
+    logging->writeLog("Wyczyszczono plansze");
 }

@@ -20,9 +20,6 @@ typedef struct
 
 class PlayerModel
 {
-private:
-    PlayerAppearance _playerAppearance;
-
 public:
     PlayerModel(); // Konstruktor
     ~PlayerModel(); // Destruktor
@@ -30,6 +27,9 @@ public:
     void setPlayersAppearance(char, char, char, char, char);
 
     PlayerAppearance getPlayersAppearance();
+
+private:
+    PlayerAppearance _playerAppearance;
 };
 
 #endif /* _PLAYERMODEL_H */

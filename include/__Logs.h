@@ -22,6 +22,9 @@ private:
     std::ofstream _ofs;
 
 public:
+    __Logs(const __Logs&) = delete;
+    __Logs& operator =(const __Logs&) = delete;
+
     __Logs(); // Konstruktor
     ~__Logs(); // Destruktor
 
@@ -33,6 +36,6 @@ public:
     bool checkFile();
 };
 
-extern __Logs logging;
+extern __Logs* logging;
 
 #endif /* __LOGS_H */

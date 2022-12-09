@@ -10,9 +10,6 @@ typedef struct
 
 class Chest
 {
-private:
-    ChestAppearance _chestAppearance;
-
 public:
     Chest(); // Konstruktor
     ~Chest(); // Destruktor
@@ -21,6 +18,9 @@ public:
     void setDefaultChestAppearance();
 
     ChestAppearance getChestAppearance();
+
+private:
+    ChestAppearance _chestAppearance;
 };
 
 #endif /* _CHEST_H */

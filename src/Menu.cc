@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../include/menu.h"
+#include "../include/Menu.h"
 #include "../include/Wrappers.h"
 #include "../include/__Logs.h"
 
@@ -19,7 +19,7 @@ Menu::Menu()
 // Destruktor
 Menu::~Menu()
 {
-    logging.writeLog("Zniszczono klase Menu");
+    logging->writeLog("Zniszczono klase Menu");
 }
 
 
@@ -37,7 +37,7 @@ void Menu::printBanner()
 
 void Menu::printMenu()
 {
-    std::cout << "[  " << GREEN << "CTRL+C" << RESET << " Aby wyjsc  ]\n";
+    std::cout << "[  " << GREEN << "CTRL+C lub q" << RESET << " Aby wyjsc  ]\n";
     std::cout << GREEN << "1."  << RESET    << " "   << YELLOW << "Zacznij Gre\n"    << RESET;
     std::cout << GREEN << "2."  << RESET    << " "   << YELLOW << "Wyswietl Pomoc\n" << RESET;
     std::cout << GREEN << "3."  << RESET    << " "   << YELLOW << "Ustawienia\n"     << RESET;
@@ -154,7 +154,7 @@ void Menu::printHelp(UserSettings* userSettings)
 
 void Menu::printAuthor()
 {
-    std::cout << "\n" << _AUTHOR << "\n\n";
+    std::cout << "\n\n" << _AUTHOR << "\n\n";
 }
 
 
@@ -175,48 +175,49 @@ u_short Menu::getOption(u_short userOption, UserSettings userSettings)
 
     switch (this->_selectedOption) 
     {
-        case 0:
+        case 48:
         break;
-        case 1:
+        case 49:
             this->_selectedOption = 1;
 
-            logging.writeLog("Wybrano opcje 1");
+            logging->writeLog("Wybrano opcje 1");
         break;
-        case 2:
+        case 50:
             this->printHelp(&userSettings);
             this->_selectedOption = 2;
 
-            logging.writeLog("Wybrano opcje 2");
+            logging->writeLog("Wybrano opcje 2");
         break;
-        case 3:
+        case 51:
             this->printSettings(&userSettings);
             this->_selectedOption = 3;
 
-            logging.writeLog("Wybrano opcje 3");
+            logging->writeLog("Wybrano opcje 3");
         break;
-        case 4:
+        case 52:
             this->printAuthor();
             this->_selectedOption = 4;
 
-            logging.writeLog("Wybrano opcje 4");
+            logging->writeLog("Wybrano opcje 4");
         break;
-        case 5:
+        case 53:
             this->_selectedOption = 5;
 
-            logging.writeLog("Wybrano opcje 5");
+            logging->writeLog("Wybrano opcje 5");
         break;
         default:
-            std::cout << RED << "Nieprawidlowa opcja" << RESET<< "\n\n";
+            std::cout << RED << "\nNieprawidlowa opcja" << RESET<< "\n\n";
             this->_incorrectOptions++;
 
-            if (this->_incorrectOptions == 5) {
+            if (this->_incorrectOptions == 5) 
+            {
                 CleanWindow();
                 std::cout << "Opuszczanie...\n";
                 std::cout << "Zbyt duzo razy zostala wybrana niepoprawna opcja lub wystapil inny blad krytyczny\n";
                 __EXIT_FAILURE;
             }
 
-            logging.writeError("Wybrano nieprawidlowa opcje", false);
+            logging->writeError("Wybrano nieprawidlowa opcje", false);
         break;
     }
 

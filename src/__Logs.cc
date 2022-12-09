@@ -2,7 +2,7 @@
 #include "../include/__Logs.h"
 
 
-__Logs logging;
+__Logs* logging = new __Logs;
 
 
 __Logs::__Logs()
@@ -14,7 +14,6 @@ __Logs::__Logs()
     this->_ofs.open(__LOG_FILENAME, std::ios::out | std::ios::trunc);
 
     if (this->checkFile() == false) 
-    {
         try 
         {
             this->_ofs.open(__LOG_FILENAME, std::ios::out | std::ios::trunc);
@@ -23,7 +22,6 @@ __Logs::__Logs()
         {
             throw "Unable to open the log file";
         }
-    }
 }
 
 
@@ -34,14 +32,12 @@ __Logs::~__Logs()
     this->_criticalErrors = 0;
 
     this->_ofs.close();
-
-    logging.writeLog("Zniszczono klase __Logs");
 }
 
 
 void __Logs::writeError(c_p_char errorMessage, bool isCritical)
 {
-    this->_ofs << "ERROR: " << errorMessage << std::endl;
+    this->_ofs << "[E] " << errorMessage << std::endl;
 
     if (isCritical)
         this->_criticalErrors++;
@@ -52,14 +48,14 @@ void __Logs::writeError(c_p_char errorMessage, bool isCritical)
 
 void __Logs::writeLog(c_p_char logMessage)
 {
-    this->_ofs << "LOG: " << logMessage << std::endl;
+    this->_ofs << "[C] " << logMessage << std::endl;
     this->_totalLogs++;
 }
 
 
 void __Logs::writeMovementLog(c_p_char logMessage, char c)
 {
-    this->_ofs << "LOG: " << logMessage << " " << c << std::endl;
+    this->_ofs << "[C] " << logMessage << " " << c << std::endl;
     this->_totalLogs++;
 }
 

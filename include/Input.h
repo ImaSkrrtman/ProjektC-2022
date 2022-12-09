@@ -3,12 +3,12 @@
 
 class Input
 {
-private:
 public:
     Input(); // Konstruktor
     ~Input(); // Destruktor
 
     char readPlayersMove(); 
+private:
 };
 
 #endif /* _INPUT_H */

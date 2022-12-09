@@ -14,7 +14,7 @@ Movement::~Movement()
 {
     this->reset();
 
-    logging.writeLog("Zniszczono klase Movement");
+    logging->writeLog("Zniszczono klase Movement");
 }
 
 

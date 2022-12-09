@@ -20,19 +20,6 @@ typedef struct
 
 class Movement
 {
-private:
-    typedef struct
-    {
-        char up; // w albo 72 -> kod do strzalki
-        char down; // s albo 80
-        char left; // a albo 75
-        char right; // d albo 77
-        char redo; // r
-        char undo; // u
-    } MovementKeys;
-
-    MovementKeys _movementKeys;
-
 public:
     UserSettings userSettings;
 
@@ -47,6 +34,19 @@ public:
     char getMovementSettingsRIGHT();
 
     void changeMovementToArrows(); // Zmiana z wasd na strzalki
+
+private:
+    typedef struct
+    {
+        char up; // w albo 72 -> kod do strzalki
+        char down; // s albo 80
+        char left; // a albo 75
+        char right; // d albo 77
+        char redo; // r
+        char undo; // u
+    } MovementKeys;
+
+    MovementKeys _movementKeys;
 };
 
 #endif /* _MOVEMENT_H */

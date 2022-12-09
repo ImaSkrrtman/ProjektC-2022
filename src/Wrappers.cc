@@ -45,7 +45,7 @@ void Print(const char* format, ...)
     vfprintf(stdout, format, arg);
     fflush(stdout);
 
-    va_end(arg);  
+    va_end(arg);
 }
 
 
@@ -67,15 +67,14 @@ void* Malloc(size_t size)
 {
     void* ptr;
 
-    if ((ptr = malloc(size)) == NULL) 
-    {
+    if ((ptr = malloc(size)) == NULL) {
         fprintf(stderr, "Nie zaalokowano pamieci w %s -> %d [ \x1B[31mBLAD\x1B[0m ]\n", __FILE__, __LINE__);
-        logging.writeError("Malloc() -> blad podczas allokacji pamieci", true);
+        logging->writeError("Malloc() -> blad podczas allokacji pamieci", true);
         fflush(stderr);
         __EXIT_FAILURE;
     }
 
-    logging.writeLog("Pamiec zostala zaalokowana");
+    logging->writeLog("Pamiec zostala zaalokowana");
 
     return ptr;
 }
@@ -85,13 +84,12 @@ void ZeroMemory(void *src, size_t size)
 {
     void* ptr;
 
-    if ((ptr = memset(src, 0, size)) == NULL) 
-    {
+    if ((ptr = memset(src, 0, size)) == NULL) {
         fprintf(stderr, "Nie mozna wyczyscic zadanego obszaru pamieci %s -> %d [ \x1B[31mBLAD\x1B[0m ]\n", __FILE__, __LINE__);
-        logging.writeError("ZeroMemory() -> blad podczas wypelniania bloku pamieci zerami 0x00", true);
+        logging->writeError("ZeroMemory() -> blad podczas wypelniania bloku pamieci zerami 0x00", true);
         fflush(stderr);
         __EXIT_FAILURE;
     }
 
-    logging.writeLog("Blok pamieci zostal wypelniony zerami");
+    logging->writeLog("Blok pamieci zostal wypelniony zerami");
 }

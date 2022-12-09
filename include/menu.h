@@ -9,10 +9,27 @@
 #include "Movement.h"
 #endif /* _MOVEMENT_INCL */
 
-#define _AUTHOR "Filip Cybulski 188891"
+#define _AUTHOR "\x1B[32mFilip Cybulski\x1B[0m \x1B[33m188891\x1B[0m"
 
-class Menu
+class Menu 
 {
+public:
+    Menu(const Menu&) = delete;
+    Menu& operator =(const Menu&) = delete;
+
+    Menu(); // Konstruktor
+    ~Menu(); // Destruktor
+    
+    void printBanner();
+    void printMenu();
+
+    void printSettings(UserSettings*);
+    void printHelp(UserSettings*);
+    void printAuthor();
+    void printInlineGameHelp(u_int, u_int, u_int);
+    
+    u_short getOption(u_short, UserSettings);
+
 private:
     u_short _selectedOption;
     u_short _incorrectOptions;
@@ -21,21 +38,6 @@ private:
     const char* _goDOWN;
     const char* _goLEFT;
     const char* _goRIGHT;
-
-public:
-    Menu(); // Konstruktor
-    ~Menu(); // Destruktor
-    
-    void printBanner();
-    void printMenu();
-
-    //? Dodac mozliwosc zmiany wygladu skrzynek i avatara
-    void printSettings(UserSettings*);
-    void printHelp(UserSettings*);
-    void printAuthor();
-    void printInlineGameHelp(u_int, u_int, u_int);
-    
-    u_short getOption(u_short, UserSettings);
 };
 
 #endif /* _MENU_H */

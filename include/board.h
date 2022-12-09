@@ -67,6 +67,22 @@ typedef struct
 
 class Board
 {
+public:
+    Board(const Board&) = delete;
+    Board& operator =(const Board&) = delete;
+
+    Board(); // Konstruktor
+    ~Board(); // Destruktor
+
+    void renderBoard();
+    void putAplayerOnTheBoard(char (*)[ROWS][COLUMNS], u_int, u_int, u_int, u_int, u_int, u_int, u_int, u_int, u_int, u_int);
+    void putChestsOnTheBoard(char (*)[ROWS][COLUMNS]);
+    void printBoard();
+    
+    int changePlayersPosition(char, bool);
+    
+    void Clean();
+
 private:
     char _charBoard[ROWS][COLUMNS];
     char _board[ROWS][COLUMNS];
@@ -84,17 +100,6 @@ private:
     DefaultPlayersPositionOnTheBoard _defaultPlayersPositionOnTheBoard;
     CurrentPlayersPositionOnTheBoard _currentPlayersPositionOnTheBoard;
     PreviousPlayersPositionOnTheBoard _previousPlayersPositionOnTheBoard;
-
-public:
-    Board(); // Konstruktor
-    ~Board(); // Destruktor
-
-    void renderBoard();
-    void putAplayerOnTheBoard(char (*)[ROWS][COLUMNS], u_int, u_int, u_int, u_int, u_int, u_int, u_int, u_int, u_int, u_int);
-    void putChestsOnTheBoard(char (*)[ROWS][COLUMNS]);
-    void printBoard();
-    void changePlayersPosition(char, bool);
-    void Clean();
 };
 
 #endif /* _BOARD_H */
