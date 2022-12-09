@@ -21,7 +21,7 @@ logging->writeLog("OS: Windows x64");
 logging.writeLog("OS: Windows x32")
 #endif
 #elif defined(__linux__)
-logging.writeLog("OS: Linux");
+logging->writeLog("OS: Linux");
 #else
 #error "Nieobslugiwany system operacyjny"
 #endif

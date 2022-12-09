@@ -5,6 +5,7 @@
 #include <conio.h>
 #elif defined(__linux__)
 #include <termios.h>
+#include <unistd.h>
 
 static char getch()
 {
@@ -74,7 +75,7 @@ u_short Sokoban::optionsSelection()
 #if defined(_WIN32) 
         this->_userOption = _getch();
 #elif defined(__linux__)
-        this->userOption = getch();
+        this->_userOption = getch();
 #endif
 
         if (this->_userOption == 48)
@@ -90,7 +91,11 @@ u_short Sokoban::optionsSelection()
 
             std::cout << "[" << GREEN << "+" << RESET << "] " << "Personalisacja ustawien: ";
 
+#if defined(_WIN32)
             this->_settingsOption = _getch();
+#elif defined(__linux__)
+            this->_settingsOption = getch();
+#endif
             
             switch (this->_settingsOption) 
             {
@@ -160,7 +165,7 @@ char Sokoban::mainLoop(int& movesLeft, int& movesMade, int& redo)
 #if defined(_WIN32)
         this->_userInput = _getch();
 #else
-        userInput = getch();
+        this->_userInput = getch();
 #endif
         int currentPosition = this->_board->changePlayersPosition(this->_userInput, settingsChanged);
 

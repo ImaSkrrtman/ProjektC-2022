@@ -1,17 +1,15 @@
 #ifndef _SOKOBAN_H
 #define _SOKOBAN_H
 
-#include "Menu.h"
+#include "menu.h"
 #include "Movement.h"
-#include "Board.h"
+#include "board.h"
 #include "PlayerModel.h"
 #include "__Logs.h"
 #include "Wrappers.h"
 #include "Types.h"
 
 #if defined(__linux__)
-#include <termios.h>
-
 static char getch();
 #endif
 

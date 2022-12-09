@@ -1,63 +1,40 @@
-LOG: OS: Linux
-LOG: Wejscie do petli wyboru opcji
-LOG: Wybrano opcje 1
-LOG: Rozpoczynanie gry
-LOG: Blok pamieci zostal wypelniony zerami
-LOG: Blok pamieci zostal wypelniony zerami
-LOG: Blok pamieci zostal wypelniony zerami
-LOG: Blok pamieci zostal wypelniony zerami
-LOG: Blok pamieci zostal wypelniony zerami
-LOG: Rozpoczynanie tworzenia planszy
-LOG: Tworzenie punktu na planszy
-LOG: Tworzenie punktu na planszy
-LOG: Tworzenie punktu na planszy
-LOG: Tworzenie punktu na planszy
-LOG: Tworzenie punktu na planszy
-LOG: Tworzenie punktu na planszy
-LOG: Plansza zostala stworzona
-LOG: Kopiowanie planszy
-LOG: Plansza zostala skopiowana
-LOG: Wejscie do petli glownej
-LOG: Uzytkownik nacisnal klawisz: a
-LOG: Uzytkownik nacisnal klawisz: a
-LOG: Uzytkownik nacisnal klawisz: a
-LOG: Uzytkownik nacisnal klawisz: s
-LOG: Uzytkownik nacisnal klawisz: s
-LOG: Uzytkownik nacisnal klawisz: s
-LOG: Uzytkownik nacisnal klawisz: s
-LOG: Uzytkownik nacisnal klawisz: d
-LOG: Uzytkownik nacisnal klawisz: w
-LOG: Uzytkownik nacisnal klawisz: w
-LOG: Uzytkownik nacisnal klawisz: w
-LOG: Uzytkownik nacisnal klawisz: d
-LOG: Uzytkownik nacisnal klawisz: d
-LOG: Uzytkownik nacisnal klawisz: d
-LOG: Uzytkownik nacisnal klawisz: s
-LOG: Uzytkownik nacisnal klawisz: s
-LOG: Uzytkownik nacisnal klawisz: s
-LOG: Uzytkownik nacisnal klawisz: s
-LOG: Uzytkownik nacisnal klawisz: s
-LOG: Uzytkownik nacisnal klawisz: a
-LOG: Uzytkownik nacisnal klawisz: a
-LOG: Uzytkownik nacisnal klawisz: d
-LOG: Uzytkownik nacisnal klawisz: d
-LOG: Blok pamieci zostal wypelniony zerami
-LOG: Blok pamieci zostal wypelniony zerami
-LOG: Blok pamieci zostal wypelniony zerami
-LOG: Blok pamieci zostal wypelniony zerami
-LOG: Blok pamieci zostal wypelniony zerami
-LOG: Wyczyszczono plansze
-LOG: Wychodzenie z gry
-LOG: Blok pamieci zostal wypelniony zerami
-LOG: Blok pamieci zostal wypelniony zerami
-LOG: Blok pamieci zostal wypelniony zerami
-LOG: Blok pamieci zostal wypelniony zerami
-LOG: Blok pamieci zostal wypelniony zerami
-LOG: Wyczyszczono plansze
-LOG: Zniszczono klase Board
-LOG: Blok pamieci zostal wypelniony zerami
-LOG: Zniszczono klase PlayerModel
-LOG: Blok pamieci zostal wypelniony zerami
-LOG: Zniszczono klase Chest
-LOG: Zniszczono klase Movement
-LOG: Zniszczono klase Menu
+[C] OS: Linux
+[C] Blok pamieci zostal wypelniony zerami
+[C] Blok pamieci zostal wypelniony zerami
+[C] Blok pamieci zostal wypelniony zerami
+[C] Blok pamieci zostal wypelniony zerami
+[C] Blok pamieci zostal wypelniony zerami
+[C] Wejscie do petli wyboru opcji
+[C] Wybrano opcje 1
+[C] Rozpoczynanie gry
+[C] Rozpoczynanie tworzenia planszy
+[C] Plansza zostala stworzona
+[C] Tworzenie skrzynek
+[C] Kopiowanie planszy
+[C] Plansza zostala skopiowana
+[C] Wejscie do petli glownej
+[C] Uzytkownik nacisnal klawisz: d
+[C] Uzytkownik nacisnal klawisz: w
+[C] Uzytkownik nacisnal klawisz: a
+[C] Uzytkownik nacisnal klawisz: a
+[C] Uzytkownik nacisnal klawisz: s
+[C] Uzytkownik nacisnal klawisz: d
+[C] Uzytkownik nacisnal klawisz: a
+[C] Uzytkownik nacisnal klawisz: s
+[C] Uzytkownik nacisnal klawisz: d
+[C] Uzytkownik nacisnal klawisz: a
+[C] Uzytkownik nacisnal klawisz: d
+[C] Wychodzenie z gry
+[C] Blok pamieci zostal wypelniony zerami
+[C] Blok pamieci zostal wypelniony zerami
+[C] Blok pamieci zostal wypelniony zerami
+[C] Blok pamieci zostal wypelniony zerami
+[C] Blok pamieci zostal wypelniony zerami
+[C] Wyczyszczono plansze
+[C] Zniszczono klase Board
+[C] Blok pamieci zostal wypelniony zerami
+[C] Zniszczono klase PlayerModel
+[C] Blok pamieci zostal wypelniony zerami
+[C] Zniszczono klase Chest
+[C] Zniszczono klase Menu
+[C] Zniszczono klase Movement
