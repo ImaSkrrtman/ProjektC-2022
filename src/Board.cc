@@ -35,7 +35,11 @@ Board::Board()
     ZeroMemory(&this->_board, sizeof(this->_board));
     ZeroMemory(&this->_playerAppearance, sizeof(this->_playerAppearance));
 
-    memcpy(&this->_currentPlayersPositionOnTheBoard, &this->_defaultPlayersPositionOnTheBoard, sizeof(this->_currentPlayersPositionOnTheBoard));
+    memcpy(
+        &this->_currentPlayersPositionOnTheBoard, 
+        &this->_defaultPlayersPositionOnTheBoard, 
+        sizeof(this->_currentPlayersPositionOnTheBoard)
+    );
 
     this->_chest.setDefaultChestAppearance();
     this->_chestAppearance = this->_chest.getChestAppearance();
@@ -51,8 +55,11 @@ Board::~Board()
 }
 
 
-void Board::putAplayerOnTheBoard(char (*board)[ROWS][COLUMNS], u_int headX, u_int headY, u_int leftArmX, u_int leftArmY, 
-    u_int bodyX, u_int bodyY, u_int rightArmX, u_int rightArmY, u_int legsX, u_int legsY)
+void Board::putAplayerOnTheBoard(
+    char (*board)[ROWS][COLUMNS], u_int headX, u_int headY, u_int leftArmX, 
+    u_int leftArmY, u_int bodyX, u_int bodyY, u_int rightArmX, u_int rightArmY, 
+    u_int legsX, u_int legsY
+)
 {
     char delimiter = ' '; // Odstep glowy od sciany
 
@@ -140,12 +147,19 @@ void Board::renderBoard()
 
 void Board::printBoard()
 {
-    this->putAplayerOnTheBoard(&this->_board, this->_currentPlayersPositionOnTheBoard.headX, 
-        this->_currentPlayersPositionOnTheBoard.headY, this->_currentPlayersPositionOnTheBoard.leftArmX,
-        this->_currentPlayersPositionOnTheBoard.leftArmY, this->_currentPlayersPositionOnTheBoard.bodyX, 
-        this->_currentPlayersPositionOnTheBoard.bodyY, this->_currentPlayersPositionOnTheBoard.rightArmX, 
-        this->_currentPlayersPositionOnTheBoard.rightArmY, this->_currentPlayersPositionOnTheBoard.legsX, 
-        this->_currentPlayersPositionOnTheBoard.legsY);
+    this->putAplayerOnTheBoard(
+        &this->_board, 
+        this->_currentPlayersPositionOnTheBoard.headX, 
+        this->_currentPlayersPositionOnTheBoard.headY, 
+        this->_currentPlayersPositionOnTheBoard.leftArmX,
+        this->_currentPlayersPositionOnTheBoard.leftArmY, 
+        this->_currentPlayersPositionOnTheBoard.bodyX, 
+        this->_currentPlayersPositionOnTheBoard.bodyY, 
+        this->_currentPlayersPositionOnTheBoard.rightArmX, 
+        this->_currentPlayersPositionOnTheBoard.rightArmY, 
+        this->_currentPlayersPositionOnTheBoard.legsX, 
+        this->_currentPlayersPositionOnTheBoard.legsY
+    );
 
     std::cout << "\t\t       " << "[--][--][--][--][--][--][--][--][--][--][--][--][--][--][--][--][--][--]\n" << std::flush;
     for (auto row = 0; row < ROWS; row++) 
@@ -175,7 +189,11 @@ int Board::changePlayersPosition(char userInput, bool settingsChanged)
                     return 1;
                 else 
                 {
-                    memcpy(&this->_previousPlayersPositionOnTheBoard, &this->_currentPlayersPositionOnTheBoard, sizeof(this->_previousPlayersPositionOnTheBoard));
+                    memcpy(
+                        &this->_previousPlayersPositionOnTheBoard, 
+                        &this->_currentPlayersPositionOnTheBoard, 
+                        sizeof(this->_previousPlayersPositionOnTheBoard)
+                    );
 
                     (*boardPtr)[this->_currentPlayersPositionOnTheBoard.headX][this->_currentPlayersPositionOnTheBoard.headY] = ' ';
                     (*boardPtr)[this->_currentPlayersPositionOnTheBoard.bodyX][this->_currentPlayersPositionOnTheBoard.bodyY] = ' ';
@@ -197,7 +215,11 @@ int Board::changePlayersPosition(char userInput, bool settingsChanged)
                     return 1;
                 else
                 {
-                    memcpy(&this->_previousPlayersPositionOnTheBoard, &this->_currentPlayersPositionOnTheBoard, sizeof(this->_previousPlayersPositionOnTheBoard));
+                    memcpy(
+                        &this->_previousPlayersPositionOnTheBoard, 
+                        &this->_currentPlayersPositionOnTheBoard, 
+                        sizeof(this->_previousPlayersPositionOnTheBoard)
+                    );
 
                     (*boardPtr)[this->_currentPlayersPositionOnTheBoard.headX][this->_currentPlayersPositionOnTheBoard.headY] = ' ';
                     (*boardPtr)[this->_currentPlayersPositionOnTheBoard.bodyX][this->_currentPlayersPositionOnTheBoard.bodyY] = ' ';
@@ -219,7 +241,11 @@ int Board::changePlayersPosition(char userInput, bool settingsChanged)
                     return 1;
                 else
                 {
-                    memcpy(&this->_previousPlayersPositionOnTheBoard, &this->_currentPlayersPositionOnTheBoard, sizeof(this->_previousPlayersPositionOnTheBoard));
+                    memcpy(
+                        &this->_previousPlayersPositionOnTheBoard, 
+                        &this->_currentPlayersPositionOnTheBoard, 
+                        sizeof(this->_previousPlayersPositionOnTheBoard)
+                    );
                     
                     (*boardPtr)[this->_currentPlayersPositionOnTheBoard.headX][this->_currentPlayersPositionOnTheBoard.headY] = ' ';
                     (*boardPtr)[this->_currentPlayersPositionOnTheBoard.bodyX][this->_currentPlayersPositionOnTheBoard.bodyY] = ' ';
@@ -241,7 +267,11 @@ int Board::changePlayersPosition(char userInput, bool settingsChanged)
                     return 1;
                 else
                 {
-                    memcpy(&this->_previousPlayersPositionOnTheBoard, &this->_currentPlayersPositionOnTheBoard, sizeof(this->_previousPlayersPositionOnTheBoard));
+                    memcpy(
+                        &this->_previousPlayersPositionOnTheBoard, 
+                        &this->_currentPlayersPositionOnTheBoard, 
+                        sizeof(this->_previousPlayersPositionOnTheBoard)
+                        );
 
                     (*boardPtr)[this->_currentPlayersPositionOnTheBoard.headX][this->_currentPlayersPositionOnTheBoard.headY] = ' ';
                     (*boardPtr)[this->_currentPlayersPositionOnTheBoard.bodyX][this->_currentPlayersPositionOnTheBoard.bodyY] = ' ';
@@ -263,7 +293,11 @@ int Board::changePlayersPosition(char userInput, bool settingsChanged)
                     logging->writeMovementLog("Uzytkownik nacisnal klawisz:", 'u');
             break;
             case 'r':
-                if (memcmp(&this->_currentPlayersPositionOnTheBoard, &this->_defaultPlayersPositionOnTheBoard, sizeof(this->_currentPlayersPositionOnTheBoard)) == 0)
+                if (memcmp(
+                    &this->_currentPlayersPositionOnTheBoard, 
+                    &this->_defaultPlayersPositionOnTheBoard, 
+                    sizeof(this->_currentPlayersPositionOnTheBoard)) == 0
+                )
                     return 1;
                 else
                 {
@@ -293,7 +327,11 @@ int Board::changePlayersPosition(char userInput, bool settingsChanged)
                     return 1;
                 else 
                 {
-                    memcpy(&this->_previousPlayersPositionOnTheBoard, &this->_currentPlayersPositionOnTheBoard, sizeof(this->_previousPlayersPositionOnTheBoard));
+                    memcpy(
+                        &this->_previousPlayersPositionOnTheBoard, 
+                        &this->_currentPlayersPositionOnTheBoard, 
+                        sizeof(this->_previousPlayersPositionOnTheBoard)
+                    );
 
                     (*boardPtr)[this->_currentPlayersPositionOnTheBoard.headX][this->_currentPlayersPositionOnTheBoard.headY] = ' ';
                     (*boardPtr)[this->_currentPlayersPositionOnTheBoard.bodyX][this->_currentPlayersPositionOnTheBoard.bodyY] = ' ';
@@ -315,7 +353,11 @@ int Board::changePlayersPosition(char userInput, bool settingsChanged)
                     return 1;
                 else
                 {
-                    memcpy(&this->_previousPlayersPositionOnTheBoard, &this->_currentPlayersPositionOnTheBoard, sizeof(this->_previousPlayersPositionOnTheBoard));
+                    memcpy(
+                        &this->_previousPlayersPositionOnTheBoard, 
+                        &this->_currentPlayersPositionOnTheBoard, 
+                        sizeof(this->_previousPlayersPositionOnTheBoard)
+                    );
 
                     (*boardPtr)[this->_currentPlayersPositionOnTheBoard.headX][this->_currentPlayersPositionOnTheBoard.headY] = ' ';
                     (*boardPtr)[this->_currentPlayersPositionOnTheBoard.bodyX][this->_currentPlayersPositionOnTheBoard.bodyY] = ' ';
@@ -337,7 +379,11 @@ int Board::changePlayersPosition(char userInput, bool settingsChanged)
                     return 1;
                 else
                 {
-                    memcpy(&this->_previousPlayersPositionOnTheBoard, &this->_currentPlayersPositionOnTheBoard, sizeof(this->_previousPlayersPositionOnTheBoard));
+                    memcpy(
+                        &this->_previousPlayersPositionOnTheBoard, 
+                        &this->_currentPlayersPositionOnTheBoard, 
+                        sizeof(this->_previousPlayersPositionOnTheBoard)
+                    );
 
                     (*boardPtr)[this->_currentPlayersPositionOnTheBoard.headX][this->_currentPlayersPositionOnTheBoard.headY] = ' ';
                     (*boardPtr)[this->_currentPlayersPositionOnTheBoard.bodyX][this->_currentPlayersPositionOnTheBoard.bodyY] = ' ';
@@ -359,7 +405,11 @@ int Board::changePlayersPosition(char userInput, bool settingsChanged)
                     return 1;
                 else
                 {
-                    memcpy(&this->_previousPlayersPositionOnTheBoard, &this->_currentPlayersPositionOnTheBoard, sizeof(this->_previousPlayersPositionOnTheBoard));
+                    memcpy(
+                        &this->_previousPlayersPositionOnTheBoard, 
+                        &this->_currentPlayersPositionOnTheBoard, 
+                        sizeof(this->_previousPlayersPositionOnTheBoard)
+                    );
 
                     (*boardPtr)[this->_currentPlayersPositionOnTheBoard.headX][this->_currentPlayersPositionOnTheBoard.headY] = ' ';
                     (*boardPtr)[this->_currentPlayersPositionOnTheBoard.bodyX][this->_currentPlayersPositionOnTheBoard.bodyY] = ' ';
@@ -382,7 +432,11 @@ int Board::changePlayersPosition(char userInput, bool settingsChanged)
                 logging->writeMovementLog("Uzytkownik nacisnal klawisz:", 'u');
             break;
             case 'r':
-                if (memcmp(&this->_currentPlayersPositionOnTheBoard, &this->_defaultPlayersPositionOnTheBoard, sizeof(this->_currentPlayersPositionOnTheBoard)) == 0)
+                if (memcmp(
+                    &this->_currentPlayersPositionOnTheBoard,
+                    &this->_defaultPlayersPositionOnTheBoard, 
+                    sizeof(this->_currentPlayersPositionOnTheBoard)) == 0
+                )
                     PASS
 
                 logging->writeMovementLog("Uzytkownik nacisnal klawisz:", 'u');

@@ -75,7 +75,12 @@ public:
     ~Board(); // Destruktor
 
     void renderBoard();
-    void putAplayerOnTheBoard(char (*)[ROWS][COLUMNS], u_int, u_int, u_int, u_int, u_int, u_int, u_int, u_int, u_int, u_int);
+
+    void putAplayerOnTheBoard(
+        char (*)[ROWS][COLUMNS], u_int, u_int, u_int, 
+        u_int, u_int, u_int, u_int, u_int, u_int, u_int
+    );
+    
     void putChestsOnTheBoard(char (*)[ROWS][COLUMNS]);
     void printBoard();
     

@@ -16,6 +16,7 @@ static char getch();
 class Sokoban
 {
 public:
+
     Sokoban(const Sokoban&) = delete;
     Sokoban& operator =(const Sokoban&) = delete;
 
@@ -25,7 +26,7 @@ public:
     void menuEntryPoint();
     void startGame();
     
-    char mainLoop(int&, int&, int&);
+    char mainLoop(int&, int&, int&, int&);
     
     u_short optionsSelection();
 

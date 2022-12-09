@@ -5,9 +5,6 @@
 #include "../include/Sokoban.h"
 
 
-bool settingsChanged = false;
-
-
 #if defined(_WIN32)
 int __cdecl main(int argc, const char* argv[])
 #else
@@ -30,7 +27,6 @@ logging->writeLog("OS: Linux");
     sokoban->menuEntryPoint();
     
     u_short userOption;
-    u_short settingsOption;
 
     logging->writeLog("Wejscie do petli wyboru opcji");
 
@@ -43,20 +39,19 @@ logging->writeLog("OS: Linux");
 
     sokoban->startGame();
 
-    char userInput;
+    char mainLoopRetVal;
 
     static int movesMade = 0;
     static int movesLeft = LEVEL_EASY_MOVES_COUNT;
     static int redo = 0;
-    static int points;
+    static int points = 0;
 
     logging->writeLog("Wejscie do petli glownej");
 
     do 
     {
-        userInput = sokoban->mainLoop(movesLeft, movesMade, redo);
-    } while (userInput != 'q');
-
+        mainLoopRetVal = sokoban->mainLoop(movesLeft, movesMade, redo, points);
+    } while (mainLoopRetVal != 'q');
 
     logging->writeLog("Wychodzenie z gry");
 

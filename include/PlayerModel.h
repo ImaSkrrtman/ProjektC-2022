@@ -5,9 +5,9 @@
 #include "Types.h"
 #endif /* _TYPES_INCL */
 
-#define LEVEL_EASY_MOVES_COUNT 1000
-#define LEVEL_MEDIUM_MOVES_COUNT 500
-#define LEVEL_HARD_MOVES_COUNT 150
+#define LEVEL_EASY_MOVES_COUNT 650
+#define LEVEL_MEDIUM_MOVES_COUNT 350
+#define LEVEL_HARD_MOVES_COUNT 210
 
 typedef struct
 {

@@ -70,75 +70,75 @@ void Sokoban::menuEntryPoint()
 
 u_short Sokoban::optionsSelection()
 {
-        std::cout << "-> Wybierz opcje: ";
+    std::cout << "-> Wybierz opcje: ";
 
 #if defined(_WIN32) 
-        this->_userOption = _getch();
+    this->_userOption = _getch();
 #elif defined(__linux__)
         this->_userOption = getch();
 #endif
 
-        if (this->_userOption == 48)
-        {
-            CleanWindow();
-            this->_menu->printBanner();
-            this->_menu->printMenu();
-        }
+    if (this->_userOption == 48)
+    {
+        CleanWindow();
+        this->_menu->printBanner();
+        this->_menu->printMenu();
+    }
 
-        if (_userOption == 51) 
-        {
-            this->_menu->printSettings(&_movement->userSettings);
+    if (_userOption == 51) 
+    {
+        this->_menu->printSettings(&this->_movement->userSettings);
 
-            std::cout << "[" << GREEN << "+" << RESET << "] " << "Personalisacja ustawien: ";
+        std::cout << "[" << GREEN << "+" << RESET << "] " << "Personalisacja ustawien: " << std::flush;
 
 #if defined(_WIN32)
-            this->_settingsOption = _getch();
+        this->_settingsOption = _getch();
 #elif defined(__linux__)
-            this->_settingsOption = getch();
+        this->_settingsOption = getch();
 #endif
             
-            switch (this->_settingsOption) 
-            {
-                case 49:
-                    this->_movement->changeMovementToArrows();
-                    this->_settingsChanged = true;
-                    std::cout << "\nUstawienia zostaly zmienione\n\n";
+        switch (this->_settingsOption) 
+        {
+            case 49:
+                this->_movement->changeMovementToArrows();
+                this->_settingsChanged = true;
+                std::cout << "\nUstawienia zostaly zmienione\n\n";
 
-                    logging->writeLog("Zmieniono ustawienia sterowania");
-                break;
-                case 50:
-                    this->_settingsChanged = false;
-                    std::cout << "\nNic nie zmieniono\n";
+                logging->writeLog("Zmieniono ustawienia sterowania");
+            break;
+            case 50:
+                this->_settingsChanged = false;
+                std::cout << "\nNic nie zmieniono\n";
 
-                    logging->writeLog("Ustawienia, Opcja [2] -> Nic nie zmieniono");
-                break;
-                case 51:
-                    this->_settingsChanged = false;
-                    std::cout << "\nPrzywrocono domyslne\n";
-                    this->_movement->reset();
+                logging->writeLog("Ustawienia, Opcja [2] -> Nic nie zmieniono");
+            break;
+            case 51:
+                this->_settingsChanged = false;
+                std::cout << "\nPrzywrocono domyslne\n";
+                this->_movement->reset();
 
                     logging->writeLog("Przywrocono ustawienia sterowania do ustawien domyslnych");
-                break;
-                default:
-                break;
-            }
+            break;
+            default:
+            break;
         }
+    }
 
-        if (this->_userOption == 53)
-        {
-            CleanWindow();            
+    if (this->_userOption == 53)
+    {
+        CleanWindow();            
 
-            this->_menu->printBanner();
-            this->_menu->printMenu();
-        }
+        this->_menu->printBanner();
+        this->_menu->printMenu();
+    }
 
-        if (this->_userOption == 'q' || this->_userOption == 3)
-        {
-            CleanWindow();
-            __EXIT_SUCCESS;
-        }
+    if (this->_userOption == 'q' || this->_userOption == 3)
+    {
+        CleanWindow();
+        __EXIT_SUCCESS;
+    }
 
-        this->_menu->getOption(this->_userOption, this->_movement->userSettings);
+    this->_menu->getOption(this->_userOption, this->_movement->userSettings);
 
     return this->_userOption;
 }
@@ -157,52 +157,62 @@ void Sokoban::startGame()
 }
 
 
-char Sokoban::mainLoop(int& movesLeft, int& movesMade, int& redo)
+char Sokoban::mainLoop(int& movesLeft, int& movesMade, int& redo, int& points)
 {
-        this->_menu->printInlineGameHelp(movesLeft, movesMade, 0);
-        this->_board->printBoard();
+    this->_menu->printInlineGameHelp(movesLeft, movesMade, points);
+    this->_board->printBoard();
 
 #if defined(_WIN32)
-        this->_userInput = _getch();
+    this->_userInput = _getch();
 #else
         this->_userInput = getch();
 #endif
-        int currentPosition = this->_board->changePlayersPosition(this->_userInput, settingsChanged);
+    int currentPosition = this->_board->changePlayersPosition(this->_userInput, this->_settingsChanged);
 
-        if (movesMade == LEVEL_EASY_MOVES_COUNT)
-        {
-            CleanWindow();
-            std::cout << "Przegrales\n";
-            __EXIT_SUCCESS;
-        }
-
-        if ((this->_userInput == this->_movement->userSettings.goDOWN || this->_userInput == this->_movement->userSettings.goUP
-            || this->_userInput == this->_movement->userSettings.goRIGHT || this->_userInput == this->_movement->userSettings.goLEFT) && currentPosition != 1)
-        {
-            movesLeft--;
-            movesMade++;
-        }
-        else if (this->_userInput == this->_movement->userSettings.undo)
-        {
-            if (movesMade != 0 && movesLeft != LEVEL_EASY_MOVES_COUNT)
-            {
-                movesLeft += movesMade;
-                movesMade = 0;
-            }
-        }
-        else if (this->_userInput == this->_movement->userSettings.redo)
-        {
-            if (movesMade != 0 && movesLeft != LEVEL_EASY_MOVES_COUNT && redo <= 10) 
-            {
-                movesLeft += 1;
-                movesMade--;
-                redo++;
-            }
-        }
-        else
-            ;
-
+    if (movesMade == LEVEL_EASY_MOVES_COUNT)
+    {
         CleanWindow();
+        std::cout << "__________                                          .__                 "         << std::endl;
+        std::cout << "\\______   \\_______________ ____   ________________  |  |   ____   ______"       << std::endl;
+        std::cout << " |     ___/\\_  __ \\___   // __ \\ / ___\\_  __\\__  \\ |  | _/ __ \\ /  ___/"   << std::endl;
+        std::cout << " |    |     |  | \\//    /\\  ___// /_/  >  | \\// __ \\|  |_\\  ___/ \\___ \\ "  << std::endl;
+        std::cout << " |____|     |__|  /_____ \\___  >___  /|__|  (____  /____/\\___  >____  >"        << std::endl;
+        std::cout << "                        \\/    \\/_____/            \\/          \\/     \\/ "    << std::endl;
+        __EXIT_SUCCESS;
+    }
+
+    if (
+        ((this->_userInput == this->_movement->userSettings.goDOWN) 
+        || (this->_userInput == this->_movement->userSettings.goUP)
+        || (this->_userInput == this->_movement->userSettings.goRIGHT) 
+        || (this->_userInput == this->_movement->userSettings.goLEFT)) 
+        && (currentPosition != 1)
+    )
+    {
+        movesLeft--;
+        movesMade++;
+    }
+    else if (this->_userInput == this->_movement->userSettings.undo)
+    {
+        if ((movesMade != 0) && (movesLeft != LEVEL_EASY_MOVES_COUNT))
+        {
+            movesLeft += movesMade;
+            movesMade = 0;
+        }
+    }
+    else if (this->_userInput == this->_movement->userSettings.redo)
+    {
+        if (movesMade != 0 && movesLeft != LEVEL_EASY_MOVES_COUNT && redo <= 10) 
+        {
+            movesLeft += 1;
+            movesMade--;
+            redo++;
+        }
+    }
+    else
+        ;
+
+    CleanWindow();
     
     return this->_userInput;
 }

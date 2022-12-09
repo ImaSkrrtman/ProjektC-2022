@@ -37,12 +37,13 @@ void Menu::printBanner()
 
 void Menu::printMenu()
 {
-    std::cout << "[  " << GREEN << "CTRL+C lub q" << RESET << " Aby wyjsc  ]\n";
-    std::cout << GREEN << "1."  << RESET    << " "   << YELLOW << "Zacznij Gre\n"    << RESET;
-    std::cout << GREEN << "2."  << RESET    << " "   << YELLOW << "Wyswietl Pomoc\n" << RESET;
-    std::cout << GREEN << "3."  << RESET    << " "   << YELLOW << "Ustawienia\n"     << RESET;
-    std::cout << GREEN << "4."  << RESET    << " "   << YELLOW << "Autor\n"          << RESET;
-    std::cout << GREEN << "5."  << RESET    << " "   << YELLOW << "Wyczysc okno\n"   << RESET;
+    std::cout << "\nGeneralnie to polecam troche wieksza rozdzielczosc terminala sobie wziac\n\n" << std::flush;
+    std::cout << "[  " << GREEN << "CTRL+C lub q" << RESET << " Aby wyjsc  ]\n" << std::flush;
+    std::cout << GREEN << "1."  << RESET    << " "   << YELLOW << "Zacznij Gre\n"    << RESET << std::flush;
+    std::cout << GREEN << "2."  << RESET    << " "   << YELLOW << "Wyswietl Pomoc\n" << RESET << std::flush;
+    std::cout << GREEN << "3."  << RESET    << " "   << YELLOW << "Ustawienia\n"     << RESET << std::flush;
+    std::cout << GREEN << "4."  << RESET    << " "   << YELLOW << "Autor\n"          << RESET << std::flush;
+    std::cout << GREEN << "5."  << RESET    << " "   << YELLOW << "Wyczysc okno\n"   << RESET << std::flush;
 }
 
 
